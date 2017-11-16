@@ -1,0 +1,428 @@
+\documentclass[12pt]{article}
+\fontfamily{times}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+\geometry{verbose,tmargin=30mm,bmargin=25mm,lmargin=25mm,rmargin=25mm}
+\pagestyle{empty}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{question}[equation]{Question}
+\newtheorem{notation}[equation]{Notation}
+%\numberwithin{equation}{section}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\Y}{\mathfrak{Y}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\ZZ}{\mathcal{Z}}
+
+%Peter's commands
+\newcommand{\ex}{\mathbb {E}}
+\newcommand{\pr}{\mathbb {P}}
+\newcommand{\Rd}{\mathbb R^d}
+\newcommand{\Rp}{\mathbb R^+}
+\newcommand{\spctim}{\mathbb R^{d+1}}
+\newcommand{\del}{\partial }
+\newcommand{\1}{\mathbf 1}
+\newcommand{\eps}{\varepsilon}
+
+%Other commands
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\Law}{\mathop{\rm Law}}
+\newcommand{\Cov}{\mathop{\rm Cov}}
+\newcommand{\Var}{\mathop{\rm Var}}
+\newcommand{\sign}{\mathop{\rm sign}}
+\newcommand{\Floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\cd}{\overset{d}{\longrightarrow}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\ppartial}[2]{\dfrac{\partial {#1}}{\partial {#2} }}
+\newcommand{\cdj}{\overset{d}{\underset{J_1}{\longrightarrow}}}
+
+
+\begin{document}
+
+
+
+\small{
+
+\begin{center}
+%The title should be centred and in bold letters. It should be informative but not too long (preferably no more than two lines).
+\textbf{Exceedances and Records of events with heavy-tailed inter-arrival times}
+\end{center}
+
+
+
+\begin{center}
+{Katharina Hees, Nathan Giang, Peter Straka}\\
+{UNSW Sydney, Australia - p.straka@unsw.edu.au}\\ 
+\vspace{0.5cm}
+
+%{Name Surname}\\
+%{Institution, City, Country - e-mail address}\\
+
+\end{center}
+
+\begin{center}
+{\bf Abstract}
+\end{center}
+
+\setlength{\parindent}{0pt}
+Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations. This theory provides a model for bursty events, where the waiting times between the observations are heavy tailed.\\
+
+% This is where the abstract is placed. It should include a statement about the problem being addressed in the presentation (and paper, if submitted). Continue with a discussion of why it is important to address this problem. This may be followed by some summary information about the models and methods developed and/or used to address the problem. Conclude with a description of the key results and contributions that will be covered in the presentation (and paper).
+
+
+{\bf Keywords}: CTRM; exceedances; extreme value statistics; bursts.
+}\\
+
+
+\setlength{\parindent}{0pt}
+
+\section{Introduction}
+Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard, which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations.\\    
+It is an well-known result from classical extreme value theory that $M(n)$ converges weakly to a generalized Extreme Value Distribution with shape parameter $\xi \in \mathbb R$, i.e.
+\begin{align}
+[M(n) - d(n)] / a(n) \stackrel{d}{\to} A,
+\end{align}
+where the distribution of $A$ is given by
+\begin{align}
+\PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right), \label{Mises}
+\end{align}
+which \eqref{Mises} is the famous van-Mises representation for Extreme Value distributions. For $\xi>0$ one gets a Fréchet distribution, for $\xi<0$ a Weibull and for $(1+\xi z)=e$ a Gumbel distribution. We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
+distribution of the random variable $\sigma A + \mu$. \\
+The extremal limit theorem allows for an extension to a functional
+limit: assume that the norming sequences $a(n)$ and $d(n)$ are as 
+in Theorem~\ref{th:GP}. Then 
+\begin{align*}
+[M(\lfloor ct \rfloor) - d(c)] / a(c) \stackrel{d}{\to} A(t),
+\quad c \to \infty.
+\end{align*}
+Convergence is in Skorokhod's $J_1$ topology, and the limit
+process $A(t)$ is an \emph{extremal process}, with
+finite-dimensional distributions given by
+\begin{align*}
+\PP(A(t_i)\leq x_i,1\leq i \leq d) 
+= F_A(\wedge_{i=1}^d x_i)^{t_1} 
+F_A(\wedge_{i=2}^d x_i)^{t_2-t_1}
+\ldots F_A(x_d)^{t_d-t_{d-1}},
+\end{align*}
+with $F_A(x)$ being a GEV distribution. \\
+In this text, we assume that the waiting times $W_k$ have a tail
+parameter $\beta \in (0,1)$, i.e. 
+$\PP(W_1 > t) \sim L(t) t^{-\beta}$ as $t \uparrow \infty$ for some slowly varying function $L(t)$.  
+(We write $f(t) \sim g(t)$ if their quotient converges to $1$.)
+The law of the $W_k$ then lies in the 
+domain of attraction of a stable law, in the sense that the limit
+\begin{align}\label{eq:sclt}
+(W_1 + \ldots + W_n)/b(n) \overset{d}{\longrightarrow} D, 
+\quad n \to \infty
+\end{align}
+exists, for a regularly varying scaling function 
+$b(n) = n^{1/\beta} L(n) \in {\rm RV}_\infty(1/\beta)$, 
+where $L(n)$ is slowly varying. 
+The limit is then a positively skewed stable distribution, 
+whose scale parameter is $1$ is $b(n)$ is chosen accordingly; 
+that is, 
+$\E[\exp(-sD)] = \exp(-s^\beta)$.
+Moreover, the following functional limit theorem holds:
+\begin{align}
+(W_1 + \ldots + W_{\Floor{ct}})/b(c) \overset{d}{\longrightarrow} D(t), 
+\quad c \to \infty
+\end{align}
+with convergence in the Skorokhod $J_1$ topology.
+The limit $D(t)$ is a stable subordinator, i.e.\ an increasing
+L\'evy process with Laplace transform $\exp(-t s^\beta)$.\\ 
+It is well known (see e.g.\ \cite{limitCTRW}) that the renewal
+process then satisfies the functional limit
+\begin{align}
+N(ct)/\tilde b(c) \cd E(t) = \inf\{r: D(r) > t\}, 
+\quad c \to \infty
+\end{align}
+for a scaling function $\tilde b(c)$ which is 
+asymptotically inverse to $b(c)$, in the sense
+of \cite[p.20]{seneta}: 
+\begin{align}\label{eq:tildeb}
+b(\tilde b(c)) \sim c \sim \tilde b(b(c)).
+\end{align}
+Note that $\tilde b \in {\rm RV}_\infty(\beta)$ 
+\cite{limitCTRW}.
+The limit process $E(t)$ is called the \emph{inverse} stable
+subordinator \cite{invSubord}.
+Was hier noch alles rein muss:
+\begin{itemize} 
+\item extreme value distribution
+\item convergence of M(n)
+\item Überleiten zu CTRM, via heavy-tailed waiting times, etc.
+\item $J_1$ convergence definition
+\item $J_1$ convergence of M(nt)
+\item defintion of extremal processes 
+\end{itemize}
+\begin{definition}
+Let $(W,J),(W_1,J_1),(W_2,J_2),...$ be i.i.d. random vectors with $J_i \in [x_L, x_R]$ where $x_L, x_R \in [-\infty, \infty]$ which are the event magnitudes and $W_i > 0$, which represent the random waitings times between the observations of the event magnitudes. Define the renewal process as
+\begin{align} \label{eq:renewal-process}
+N(t) = \max\{n \in \mathbb N: S(n) \le t\},
+\end{align}
+and let $M(n) := \bigvee_{i=1}^n J_i$ denote the maximum. Then the process
+\begin{align}
+V(t)=M(N(t)) = \bigvee_{k=1}^{N(t)} J_k, \quad t \ge 0.
+\end{align}
+is called a CTRM (Continuous Time Random Maxima) process and furthermore
+\begin{align}
+\tilde V(t) = \bigvee_{k=1}^{N(t)+1} J_k, \quad t \ge 0.
+\end{align}
+a OCTRM (Oracle Continuous Time Random Maxima).
+\end{definition}
+A CTRM can be regarded as a maximum process $M(n)$, time-changed by the
+renewal process $n = N(t)$. In XX it was shown that the CTRM $V(t) = M(N(t)$ and the OCTRM $\tilde V(t)$ have the following functional scaling limit in the Skorokhod $J_1$ topology: 
+\begin{align*}
+[V(ct) - d(\tilde b(c))] / a(\tilde b(c)) \stackrel{d}{\to} 
+A(E(t)), \quad c \to \infty.
+\end{align*}
+Hence its scaling limit results from the time-change .....
+We set $M(0) = x_L$, and $\max\{\} = 0$. 
+
+
+
+\section{Exceedance and exceedance time}
+
+\begin{definition}
+The \textbf{exceedance time} and the \textbf{exceedance} of level $\ell \in [x_L,x_R]$ are
+defined by
+\begin{align*}
+T_\ell &= \inf\{t: V(t) > \ell\}, 
+&
+X_\ell &= V(T_\ell) - \ell .
+\end{align*}
+\end{definition}
+
+In the following proposition we list some results about the relationship between the exceedances and their exceedance times.
+
+\begin{proposition}\label{lem:independence}
+Let $(V_t)_{t \geq 0}$ resp. $(\tilde{V}_t)_{t \geq 0}$ be a (coupled) CTRM resp. OCTRM process, and let $\ell \in [x_L,x_R]$.
+\begin{enumerate}
+\item[(i)]
+The exceedances $(X_{\ell, k})_{k \in \mathbb N}$ and exceedance times 
+$(T_{\ell, k})_{k \in \mathbb N}$ are both i.i.d.
+\item[(ii)]
+In the OCTRM case, the exceedance $X_{\ell, k}$ and the corresponding exceedance time $T_{\ell, k}$ are independent for each $k \in \mathbb N$. 
+\item[(iii)]
+In the CTRM case, the exceedance and exceedance time are not necessarily independent. 
+\end{enumerate}
+\end{proposition}\begin{proof}
+To write down!!
+\end{proof}
+The main purpose of this section is, to get the asymptotic distribution of the exceedance and the exceedance time as well as scaling limit theorems for their corresponding processes. It is well-known, that the excess function of $J$ is asymptotically Generalised Pareto distributed, i.e.
+\begin{align*}
+\PP(J_1 - \ell > y | J_1 > \ell) 
+\approx (1+ \xi y / \tilde \sigma)^{-1/\xi} \rightarrow 1 - H(y) \text{ as } \ell \uparrow x_R,
+\end{align*}
+where $\tilde \sigma :=\sigma + \xi(\ell-\mu)$, $y>0$ and $1+\xi y/\tilde \sigma >0$. A distribution with CDF $H(y)$ is said to be from the \textbf{Generalised Pareto family}
+$GP(\xi,\bar \sigma)$.\\  
+
+\begin{theorem}(Verteilungskonvergenz der exceedance time)
+For fixed $l>0$
+\begin{align}
+b(c) T(cl) \Rightarrow H(l) \text{ as } c \rightarrow \infty
+\end{align} 
+Where the CDF of $H(l)$ is given by
+\begin{align*}
+XX
+\end{align*}
+\end{theorem}
+
+We can even show that the exceedance time process $(T_l)_{l \in \N}$ in converges to the inverse of CTRM resp. OCTRM limit in the $M_1$-topology.
+
+
+\begin{theorem}(M1 convergence of the exceedance)
+We have 
+\begin{align*}
+(T(cl))_{l \in [x_L,x_R]}  \rightarrow (D(A^{-1}(l)))_{l \in [x_L,x_R]} 
+\end{align*}
+\end{theorem}
+Since the inverse function on XX is not continuous in Skorokhod's $J_1$ topology, we only get the convergence in the $M_1$ topology.\\
+In XX and before in XX without noting it, it was shown, that in the uncoupled case the exceedance time is asymptomatically Mittag-Leffler distributed. This surprisingly holds in the coupled case as well. For$\beta \in (0,1)$, a standard Mittag-Leffler 
+random variable $Y$ is positive with Laplace transform
+$\E[\exp(-s Y)] = 1/(1+s^\beta)$. For $\sigma > 0$, we then write 
+${\rm ML}(\beta, \sigma)$ for the distribution of $\sigma Y$. \\
+
+
+\begin{theorem}(Asymptotic distribution of the exceedance (magnitudes))
+We have 
+\begin{align*}
+(X(cl))_{l \in (0,1)} \rightarrow (A(A^{-1}(l)))_{l \in (0,1)} - l
+\end{align*}
+\end{theorem}
+
+To proof this, we will first proof the following lemma.
+
+\begin{lemma} 
+Assume $(x_n)_{n \in \N} \subset \D$ and we have
+\begin{align*}
+x_n \rightarrow x  \text{ and }  x_n^{-1} \rightarrow x^{-1}. 
+\end{align*}
+Then it follows, that
+\begin{align*}
+x_n \circ x_n^{-1} \rightarrow x \circ x^{-1}.
+\end{align*}
+\end{lemma}
+
+
+\section{Records and record times}
+
+
+
+%It is self-similar with exponent $\beta$
+%\cite{limitCTRW}, non-decreasing, and the (regenerative, random) set 
+%$\mathcal R$ of its points of increase is a fractal with dimension $\beta$ 
+%\cite{Bertoin04}.
+%$E(t)$ is hence a model for time series with intermittent, `bursty'
+%behaviour, for the following reasons:
+%\begin{itemize}
+%\item
+%If $t \in \mathcal R$, for any $\epsilon > 0$ the interval
+%$(t, t+ \epsilon)$ almost surely contains uncountably many other points of $\mathcal R$ (a ``bursty'' period)
+%\item 
+%If $t \notin \mathcal R$, then there is $\epsilon > 0$ such that
+%$(t, t+ \epsilon)$ contains no other 
+%\item [ii)]
+%$\mathcal R$ has Lebesgue measure $0$, and hence $E(t)$ is
+%constant at any ``randomly'' chosen time $t$. 
+%\end{itemize}
+%Having only two parameters ($\alpha \in (0,1)$ and a scale parameter)
+%the inverse stable subordinator hence models scaling limits of heavy-tailed 
+%waiting times parsimoniously.
+
+
+
+
+
+
+
+%\section{Conclusion}
+\section{Conclusion}
+
+
+{\bf Acknowledgements.} P. Straka was supported by the Australian Research Council’s Discovery Early Career Research Award DE160101147.
+
+
+\begin{thebibliography}{KKBK12}
+
+\bibitem[Bar05]{Barabasi2005}
+Albert~L{\'{a}}szl{\'{o}} Barab{\'{a}}si.
+\newblock {The origin of bursts and heavy tails in human dynamics}.
+\newblock {\em Nature}, 435(May):207--211, 2005.
+
+\bibitem[BGST06]{beirlant06Book}
+Jan Beirlant, Yuri Goegebeur, Johan Segers, and Jozef Teugels.
+\newblock {\em {Statistics of extremes: theory and applications}}.
+\newblock John Wiley \& Sons, 2006.
+
+\bibitem[B{\v{S}}14]{Basrak2014}
+Bojan Basrak and Drago {\v{S}}poljari{\'{c}}.
+\newblock {Extremal behaviour of random variables observed in renewal times}.
+\newblock jun 2014.
+
+\bibitem[Cah13]{Cahoy2013}
+Dexter~O. Cahoy.
+\newblock {Estimation of Mittag-Leffler Parameters}.
+\newblock {\em Commun. Stat. - Simul. Comput.}, 42(2):303--315, feb 2013.
+
+\bibitem[Haw71]{hawkes1971point}
+Alan~G Hawkes.
+\newblock {Point spectra of some mutually exciting point processes}.
+\newblock {\em J. R. Stat. Soc. Ser. B}, pages 438--443, 1971.
+
+\bibitem[HS16]{Heesa}
+Katharina Hees and Hans-Peter Scheffler.
+\newblock {On joint sum/max stability and sum/max domains of attraction}.
+\newblock pages 1--31, jun 2016.
+
+\bibitem[HS17]{Hees16}
+Katharina Hees and Hans-Peter Scheffler.
+\newblock {Coupled Continuous Time Random Maxima}.
+\newblock pages 1--24, feb 2017.
+
+\bibitem[HTSL10]{HLS2010b}
+B.I. Henry, {T.A.M. Langlands}, and Peter Straka.
+\newblock {An introduction to fractional diffusion}.
+{\em Complex Phys. Biophys.
+  Econophysical Syst.} World Scientific, 2010.
+
+\bibitem[KKBK12]{Karsai2012}
+M{\'{a}}rton Karsai, Kimmo Kaski, Albert~L{\'{a}}szl{\'{o}} Barab{\'{a}}si, and
+  J{\'{a}}nos Kert{\'{e}}sz.
+\newblock {Universal features of correlated bursty behaviour}.
+\newblock {\em Sci. Rep.}, 2, 2012.
+
+\bibitem[MK00]{Metzler2000}
+Ralf Metzler and Joseph Klafter.
+\newblock {The random walk's guide to anomalous diffusion: a fractional
+  dynamics approach}.
+\newblock {\em Phys. Rep.}, 339(1):1--77, dec 2000.
+
+\bibitem[MS04]{limitCTRW}
+Mark~M Meerschaert and Hans-Peter Scheffler.
+\newblock {Limit Theorems for Continuous-Time Random Walks with Infinite Mean
+  Waiting Times}.
+\newblock {\em J. Appl. Probab.}, 41(3):623--638, sep 2004.
+
+\bibitem[MS08]{MeerschaertStoev08}
+Mark~M Meerschaert and Stilian~A Stoev.
+\newblock {Extremal limit theorems for observations separated by random power
+  law waiting times}.
+\newblock {\em J. Stat. Plan. Inference}, 139(7):2175--2188, jul 2008.
+
+\bibitem[MS13]{invSubord}
+Mark~M Meerschaert and Peter Straka.
+\newblock {Inverse Stable Subordinators}.
+\newblock {\em Math. Model. Nat. Phenom.}, 8(2):1--16, apr 2013.
+
+\bibitem[Sen76]{seneta}
+E~Seneta.
+\newblock {\em {Regularly Varying Functions}}, volume 508 of {\em Lecture Notes
+  in Mathematics}.
+\newblock Springer-Verlag, Berlin, 1976.
+
+\bibitem[SS83]{Sumita1983}
+J.~George Shanthikumar and Ushio Sumita.
+\newblock {General shock models associated with correlated renewal sequences}.
+\newblock {\em J. Appl. Probab.}, 20(3):600--614, 1983.
+
+\bibitem[ST04]{ST04}
+Dmitrii~S Silvestrov and Jozef~L. Teugels.
+\newblock {Limit theorems for mixed max-sum processes with renewal stopping}.
+\newblock {\em Ann. Appl. Probab.}, 14(4):1838--1868, nov 2004.
+
+\bibitem[VTK13]{Vajna2013}
+Szabolcs Vajna, B{\'{a}}lint T{\'{o}}th, and J{\'{a}}nos Kert{\'{e}}sz.
+\newblock {Modelling bursty time series}.
+\newblock {\em New J. Phys.}, 15(10):103023, oct 2013.
+
+\end{thebibliography}
+
+
+\end{document}
