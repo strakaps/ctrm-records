@@ -88,6 +88,45 @@ Extreme Value theory deals with the observation of extreme events which are the 
 
 \section{The Max-Renewal Process}
 
+Let $c > 0$ be a scaling parameter (which may be ignored until the next section). 
+Let $(J^{(c)},W^{(c)}),(J^{(c)}_1,W^{(c)}_1),(J^{(c)}_2,W^{(c)}_2), \ldots$ 
+be i.i.d.\ bivariate random vectors on $[0, \infty) \times \mathbb R$. 
+The components $J^{(c)}$ and $W^{(c)}$ represent an event magnitude and 
+a waiting time, respectively. 
+We first set up some notation: 
+
+
+\begin{definition}
+Write 
+\begin{align}
+S^{(c)}(n) &= \sum_{i=1}^n W^{(c)}_i, 
+&
+M^{(c)}(n) &= \bigvee_{i=1}^n J^{(c)}_i
+\end{align} 
+for the cumulative sum of the waiting times and the cumulative maximum of the 
+magnitudes. 
+The renewal process associated with $S^{(c)}$ is 
+\begin{align} \label{eq:renewal-process}
+N^{(c)}(t) = \max\{n \in \mathbb N: S^{(c)}(n) \le t\},
+\end{align}
+Then the process
+\begin{align}
+V^{(c)}(t) 
+= M^{(c)}\left( N^{(c)}(t) \right) 
+= \bigvee_{k=1}^{N^{(c)}(t)} J^{(c)}_k, \quad t \ge 0.
+\end{align}
+is called a CTRM process (Continuous Time Random Maxima). Finally, the process
+\begin{align}
+V^{(c)}(t) 
+= M^{(c)}\left( N^{(c)}(t) + 1 \right) 
+= \bigvee_{k=1}^{N^{(c)}(t) + 1} J^{(c)}_k, \quad t \ge 0.
+\end{align}
+a OCTRM (Oracle Continuous Time Random Maxima).
+\end{definition}
+A CTRM can be regarded as a maximum process $M(n)$, time-changed by the
+renewal process $n = N(t)$. 
+
+
 It is an well-known result from classical extreme value theory that $M(n)$ converges weakly to a generalized Extreme Value Distribution with shape parameter $\xi \in \mathbb R$, i.e.
 \begin{align}
 [M(n) - d(n)] / a(n) \stackrel{d}{\to} A,
@@ -165,23 +204,6 @@ Was hier noch alles rein muss:
 \item $J_1$ convergence of M(nt)
 \item defintion of extremal processes 
 \end{itemize}
-\begin{definition}
-Let $(W,J),(W_1,J_1),(W_2,J_2),...$ be i.i.d. random vectors with $J_i \in [x_L, x_R]$ where $x_L, x_R \in [-\infty, \infty]$ which are the event magnitudes and $W_i > 0$, which represent the random waitings times between the observations of the event magnitudes. Define the renewal process as
-\begin{align} \label{eq:renewal-process}
-N(t) = \max\{n \in \mathbb N: S(n) \le t\},
-\end{align}
-and let $M(n) := \bigvee_{i=1}^n J_i$ denote the maximum. Then the process
-\begin{align}
-V(t)=M(N(t)) = \bigvee_{k=1}^{N(t)} J_k, \quad t \ge 0.
-\end{align}
-is called a CTRM (Continuous Time Random Maxima) process and furthermore
-\begin{align}
-\tilde V(t) = \bigvee_{k=1}^{N(t)+1} J_k, \quad t \ge 0.
-\end{align}
-a OCTRM (Oracle Continuous Time Random Maxima).
-\end{definition}
-A CTRM can be regarded as a maximum process $M(n)$, time-changed by the
-renewal process $n = N(t)$. 
 
 \begin{proposition}
 The CTRM and OCTRM processes are Semi-Markov processes: 
@@ -292,7 +314,28 @@ x_n \circ x_n^{-1} \rightarrow x \circ x^{-1}.
 \end{lemma}
 
 
-\section{Joint distribution of exceedance and exceedance time}
+\section{Joint distribution of threshold event and threshold crossing time}
+
+Define the potential measure, or expected occupation time, of the bivariate 
+Markov process $(A_u,D_u)$:
+
+\begin{align*}
+U(B) = \ex \left[ \int_0^\infty \mathbf 1\{ (A_u, D_u) \in B\}\,du \right]
+\end{align*}
+
+Define the bivariate tail function $\overline \nu(x,t)$ via 
+
+\begin{align}
+\overline \nu(x,t) = \lim_{c \to \infty} c \pr [J^{(c)} > x, W^{(c)} > t]
+\end{align}
+
+
+\begin{theorem}
+\begin{align}
+\pr [T(\ell) > t, Y(\ell) > y]
+= \iint\limits_{x \le \ell, t' \in [0,t)} \overline \nu(y, t - t') U(dx, dt')
+\end{align}
+\end{theorem}
 
 
 \section{Point process characterization of records}
