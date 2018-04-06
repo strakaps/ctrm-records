@@ -3,5 +3,7 @@
 *.pdf
 *.synctex.gz
 *.Rhistory
+*.bbl
+*.blg
 
 .DS_Store
