@@ -88,9 +88,11 @@ Extreme Value theory deals with the observation of extreme events which are the 
 
 \section{The Max-Renewal Process}
 
+\subsection{Notation}
+
 Let $c > 0$ be a scaling parameter (which may be ignored until the next section). 
 Let $(J^{(c)},W^{(c)}),(J^{(c)}_1,W^{(c)}_1),(J^{(c)}_2,W^{(c)}_2), \ldots$ 
-be i.i.d.\ bivariate random vectors on $[0, \infty) \times \mathbb R$. 
+be i.i.d.\ bivariate random vectors on $\mathbb R \times [0, \infty)$. 
 The components $J^{(c)}$ and $W^{(c)}$ represent an event magnitude and 
 a waiting time, respectively. 
 We first set up some notation: 
@@ -107,7 +109,7 @@ for the cumulative sum of the waiting times and the cumulative maximum of the
 magnitudes. 
 The renewal process associated with $S^{(c)}$ is 
 \begin{align} \label{eq:renewal-process}
-N^{(c)}(t) = \max\{n \in \mathbb N: S^{(c)}(n) \le t\},
+N^{(c)}(t) = \max\{n \in \mathbb N: S^{(c)}(n) \le t\}.
 \end{align}
 Then the process
 \begin{align}
@@ -117,31 +119,54 @@ V^{(c)}(t)
 \end{align}
 is called a CTRM process (Continuous Time Random Maxima). Finally, the process
 \begin{align}
-V^{(c)}(t) 
+\tilde V^{(c)}(t) 
 = M^{(c)}\left( N^{(c)}(t) + 1 \right) 
 = \bigvee_{k=1}^{N^{(c)}(t) + 1} J^{(c)}_k, \quad t \ge 0.
 \end{align}
 a OCTRM (Oracle Continuous Time Random Maxima).
 \end{definition}
-A CTRM can be regarded as a maximum process $M(n)$, time-changed by the
-renewal process $n = N(t)$. 
+
+The conceptual difference between the CTRM and the OCTRM is that for the CTRM, 
+the waiting time $W^{(c)}_k$ precedes the magnitude $J^{(c)}_k$, whereas for 
+the OCTRM it succeeds it. In other words, for the CTRM we have 
+$W^{(c)}_1, J^{(c)}_1, W^{(c)}_2, J^{(c)}_2, W^{(c)}_3, \ldots$ whereas for the
+OCTRM, we have $J^{(c)}_1, W^{(c)}_1, J^{(c)}_2, W^{(c)}_2, J^{(c)}_3, \ldots$. 
 
 
-It is an well-known result from classical extreme value theory that $M(n)$ converges weakly to a generalized Extreme Value Distribution with shape parameter $\xi \in \mathbb R$, i.e.
+\subsection{Limits of sum and maximum}
+
+In this article, we study threshold crossing times and threshold events, which 
+are stochastic processes derived from the underlying (O)CTRM process. In
+particular, we establish scaling limit theorems, or invariance principles. As 
+the scale $c \to \infty$ increases, $W^{(c)}$ and $J^{(c)}$ decrease as follows: 
 \begin{align}
-[M(n) - d(n)] / a(n) \stackrel{d}{\to} A,
+J^{(c)} &\stackrel{d}{=} \frac{J - d(c)}{a(c)}, 
+& 
+W^{(c)} &\stackrel{d}{=} \frac{W}{b(c)}
+\end{align}
+where $(J,W)$ is some random vector on $\mathbb R \times [0,\infty)$, 
+where $a(c), b(c)$ and $d(c)$ are deterministic scaling functions, 
+and where $\stackrel{d}{=}$ denotes equality in distribution. 
+
+It is a well-known result from classical extreme value theory that 
+if the distribution of $J$ is continuous, then there exist $a(c)$ and $d(c)$
+such that 
+$M^{(n)}(n)$ converges weakly to a generalized Extreme Value Distribution with shape parameter $\xi \in \mathbb R$, i.e.
+\begin{align}
+M^{(n)}(n) \stackrel{d}{\to} A,
 \end{align}
 where the distribution of $A$ is given by
 \begin{align}
-\PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right), \label{Mises}
+\PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right). \label{Mises}
 \end{align}
-which \eqref{Mises} is the famous van-Mises representation for Extreme Value distributions. For $\xi>0$ one gets a Fréchet distribution, for $\xi<0$ a Weibull and for $(1+\xi z)=e$ a Gumbel distribution. We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
+Equation \eqref{Mises} is the so-called van-Mises representation for Extreme Value distributions. For $\xi>0$ one gets a Fr\'echet distribution, for $\xi<0$ a Weibull and for $(1+\xi z)=e$ a Gumbel distribution. We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
 distribution of the random variable $\sigma A + \mu$. \\
 The extremal limit theorem allows for an extension to a functional
 limit: assume that the norming sequences $a(n)$ and $d(n)$ are as 
 in Theorem~\ref{th:GP}. Then 
 \begin{align*}
-[M(\lfloor ct \rfloor) - d(c)] / a(c) \stackrel{d}{\to} A(t),
+M^{(c)}(\lfloor ct \rfloor)
+\stackrel{d}{\to} A(t),
 \quad c \to \infty.
 \end{align*}
 Convergence is in Skorokhod's $J_1$ topology, and the limit
@@ -153,27 +178,27 @@ finite-dimensional distributions given by
 F_A(\wedge_{i=2}^d x_i)^{t_2-t_1}
 \ldots F_A(x_d)^{t_d-t_{d-1}},
 \end{align*}
-with $F_A(x)$ being a GEV distribution. \\
-In this text, we assume that the waiting times $W_k$ have a tail
+with $F_A(x)$ being a GEV distribution.
+
+In this text, we assume that the waiting times $W^{(c)}_k$ have a tail
 parameter $\beta \in (0,1)$, i.e. 
-$\PP(W_1 > t) \sim L(t) t^{-\beta}$ as $t \uparrow \infty$ for some slowly varying function $L(t)$.  
-(We write $f(t) \sim g(t)$ if their quotient converges to $1$.)
-The law of the $W_k$ then lies in the 
-domain of attraction of a stable law, in the sense that the limit
+$\PP(W^{(c)} > t) \sim L(t) t^{-\beta}$ as $t \uparrow \infty$ 
+for some slowly varying function $L(t)$.\footnote{
+We write $f(t) \sim g(t)$ if their quotient converges to $1$.
+}
+The $W^{(c)}_k$ are then said to lie in the 
+domain of attraction of a stable law, meaning that 
 \begin{align}\label{eq:sclt}
-(W_1 + \ldots + W_n)/b(n) \overset{d}{\longrightarrow} D, 
+S^{(n)}(n) \overset{d}{\longrightarrow} D, 
 \quad n \to \infty
 \end{align}
-exists, for a regularly varying scaling function 
-$b(n) = n^{1/\beta} L(n) \in {\rm RV}_\infty(1/\beta)$, 
-where $L(n)$ is slowly varying. 
-The limit is then a positively skewed stable distribution, 
-whose scale parameter is $1$ is $b(n)$ is chosen accordingly; 
-that is, 
+exists, for some regularly varying $b(c)$ at $\infty$ with parameter $1/\beta$;
+we write $b(c) \in {\rm RV}_\infty(1/\beta)$.
+The limit $D$ is then a positively skewed stable random variable, with
 $\E[\exp(-sD)] = \exp(-s^\beta)$.
-Moreover, the following functional limit theorem holds:
+As for the maximum, the following functional limit theorem holds for the sum:
 \begin{align}
-(W_1 + \ldots + W_{\Floor{ct}})/b(c) \overset{d}{\longrightarrow} D(t), 
+S^{(c)}(\Floor{ct}) \overset{d}{\longrightarrow} D(t), 
 \quad c \to \infty
 \end{align}
 with convergence in the Skorokhod $J_1$ topology.
@@ -230,15 +255,15 @@ We set $M(0) = x_L$, and $\max\{\} = 0$.
 
 
 
-\section{Scaling limits of exceedance and exceedance time}
+\section{Scaling limits of threshold event and threshold crossing time}
 
 \begin{definition}
-The \textbf{exceedance time} and the \textbf{exceedance} of level $\ell \in [x_L,x_R]$ are
-defined by
+The \textbf{threshold event} and the \textbf{threshold crossing time} 
+of level $\ell$ are defined by
 \begin{align*}
-T_\ell &= \inf\{t: V(t) > \ell\}, 
+T^{(c)}(\ell) &= \inf\{t: V^{(c)}(t) > \ell\}, 
 &
-X_\ell &= V(T_\ell) - \ell .
+Y^{(c)}(\ell) &= V^{(c)}(T^{(c)}(\ell)).
 \end{align*}
 \end{definition}
 
@@ -317,7 +342,7 @@ x_n \circ x_n^{-1} \rightarrow x \circ x^{-1}.
 \section{Joint distribution of threshold event and threshold crossing time}
 
 Define the potential measure, or expected occupation time, of the bivariate 
-Markov process $(A_u,D_u)$:
+Markov process $(A(u),D(u))$:
 
 \begin{align*}
 U(B) = \ex \left[ \int_0^\infty \mathbf 1\{ (A_u, D_u) \in B\}\,du \right]
