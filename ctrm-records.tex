@@ -62,48 +62,32 @@
 \newcommand{\ppartial}[2]{\dfrac{\partial {#1}}{\partial {#2} }}
 \newcommand{\cdj}{\overset{d}{\underset{J_1}{\longrightarrow}}}
 
+\title{Exceedances and Records Heavy-Tailed Max-Renewal Processes}
+\author{Nathan Giang \and Katharina Hees \and Peter Straka}
+
+
 
 \begin{document}
 
+\maketitle
 
-
-\small{
-
-\begin{center}
-%The title should be centred and in bold letters. It should be informative but not too long (preferably no more than two lines).
-\textbf{Exceedances and Records of events with heavy-tailed inter-arrival times}
-\end{center}
-
-
-
-\begin{center}
-{Katharina Hees, Nathan Giang, Peter Straka}\\
-{UNSW Sydney, Australia - p.straka@unsw.edu.au}\\ 
-\vspace{0.5cm}
-
-%{Name Surname}\\
-%{Institution, City, Country - e-mail address}\\
-
-\end{center}
-
-\begin{center}
-{\bf Abstract}
-\end{center}
-
-\setlength{\parindent}{0pt}
+\begin{abstract}
 Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations. This theory provides a model for bursty events, where the waiting times between the observations are heavy tailed.\\
 
 % This is where the abstract is placed. It should include a statement about the problem being addressed in the presentation (and paper, if submitted). Continue with a discussion of why it is important to address this problem. This may be followed by some summary information about the models and methods developed and/or used to address the problem. Conclude with a description of the key results and contributions that will be covered in the presentation (and paper).
-
+\end{abstract}
 
 {\bf Keywords}: CTRM; exceedances; extreme value statistics; bursts.
-}\\
 
 
 \setlength{\parindent}{0pt}
 
 \section{Introduction}
-Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard, which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations.\\    
+Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard, which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations.
+
+
+\section{The Max-Renewal Process}
+
 It is an well-known result from classical extreme value theory that $M(n)$ converges weakly to a generalized Extreme Value Distribution with shape parameter $\xi \in \mathbb R$, i.e.
 \begin{align}
 [M(n) - d(n)] / a(n) \stackrel{d}{\to} A,
@@ -197,7 +181,24 @@ is called a CTRM (Continuous Time Random Maxima) process and furthermore
 a OCTRM (Oracle Continuous Time Random Maxima).
 \end{definition}
 A CTRM can be regarded as a maximum process $M(n)$, time-changed by the
-renewal process $n = N(t)$. In XX it was shown that the CTRM $V(t) = M(N(t)$ and the OCTRM $\tilde V(t)$ have the following functional scaling limit in the Skorokhod $J_1$ topology: 
+renewal process $n = N(t)$. 
+
+\begin{proposition}
+The CTRM and OCTRM processes are Semi-Markov processes: 
+Let $\mathcal R = \{0\} \cup \{\sum_{k=1}^n W_k, n \in \mathbb N\}$ denote the set of renewal times, and let 
+\begin{align*}
+Z(t) = t - \sup((-\infty, t] \cap \mathcal R)
+\end{align*}
+be the \emph{age}, i.e.\ the time passed since the last renewal. Then the bivariate processes 
+\begin{align*}
+(V(t), Z(t)), \quad (\tilde V(t), Z(t)), \quad t \ge 0,
+\end{align*}
+are Markov processes with respect to their natural filtrations $\mathcal F_t = \sigma(V(s): s \le t)$ and $\tilde{\mathcal F}_t = \sigma(\tilde V(s): s \le t)$. 
+\end{proposition}
+
+The proof is deferred to Section \ref{sec:records}.
+
+In XX it was shown that the CTRM $V(t) = M(N(t)$ and the OCTRM $\tilde V(t)$ have the following functional scaling limit in the Skorokhod $J_1$ topology: 
 \begin{align*}
 [V(ct) - d(\tilde b(c))] / a(\tilde b(c)) \stackrel{d}{\to} 
 A(E(t)), \quad c \to \infty.
@@ -207,7 +208,7 @@ We set $M(0) = x_L$, and $\max\{\} = 0$.
 
 
 
-\section{Exceedance and exceedance time}
+\section{Scaling limits of exceedance and exceedance time}
 
 \begin{definition}
 The \textbf{exceedance time} and the \textbf{exceedance} of level $\ell \in [x_L,x_R]$ are
@@ -291,9 +292,11 @@ x_n \circ x_n^{-1} \rightarrow x \circ x^{-1}.
 \end{lemma}
 
 
-\section{Records and record times}
+\section{Joint distribution of exceedance and exceedance time}
 
 
+\section{Point process characterization of records}
+\label{sec:records}
 
 %It is self-similar with exponent $\beta$
 %\cite{limitCTRW}, non-decreasing, and the (regenerative, random) set 
@@ -316,6 +319,59 @@ x_n \circ x_n^{-1} \rightarrow x \circ x^{-1}.
 %the inverse stable subordinator hence models scaling limits of heavy-tailed 
 %waiting times parsimoniously.
 
+The book \cite[Chapter 4]{resnick2013extreme} nicely characterizes the structure of records of extreme value processes. Record values and inter-record times follow a bivariate Poisson Point Process, whose intensity measure depends on the underlying distribution of event magnitudes. We generalize these results for max-renewal processes with regularly varying waiting times with infinite mean. 
+
+A \textit{record time} $L$ for a CTRM $V(t)$ is defined by 
+\begin{align*}
+V(L) > V(t), \quad t < L.
+\end{align*}
+Paths of CTRMs are piecewise constant, non-decreasing and right-continuous, hence the above is well-defined and the $L$'s form an increasing sequence $\{L_n\}$. The \textit{record values} are then defined as $V(L_n)$. Clearly, the $L_n$ lie in the set $\mathcal R$ of renewal times, i.e.\ $L_n = W_1 + \ldots + W_{\tau(n)}$ for some integer $\tau(n)$. 
+
+Given a record at $L_n$, the next record time $L_{n+1}$ occurs with the first event magnitude $J_k, k \ge \tau(n)$, which is larger than $V(L_n)$. As the $J_k$ are i.i.d., $\tau(n+1) - \tau(n)$ must be geometrically distributed, with parameter $p = 1 - F_J(V(L_n))$, and hence 
+\begin{align} \label{eq:geometric-sum}
+L_{n+1} - L_n \stackrel{d}{=} \sum_{k=1}^{N(p)} W_k
+\end{align}
+where $N(p) \sim {\rm Geom}(p)$, independent of the $W_k$. 
+
+The record values $V(L_n)$ form a Markov chain (see e.g.\ \cite{resnick2013extreme}), and moreover we may characterize the record structure of CTRMs as follows: 
+
+\begin{proposition}
+\begin{enumerate}
+\item
+$\{V(L_n), n \ge 1\}$ is a Markov chain with stationary transition probabilities satisfying
+\begin{align*}
+\Pi(x, (y,\infty)) = 
+\begin{cases}
+(1-F(y)) / (1-F(x)), & y > x
+\\
+1, & y \le x
+\end{cases}
+\end{align*}
+\item
+$\{V(L_n), n \ge 1\}$ are the points of a Poisson random measure on $(x_l, x_0)$ with intensity measure
+\begin{align*}
+R(a,b] = R(b) - R(a)
+\end{align*}
+where $R(t) = -\log(1-F(t))$. 
+\item
+If $F_J$ is continuous, $\{V(L_n), L_{n+1} - L_n, n \ge 1\}$ are the points of a bivariate Poisson random measure on
+$(x_l, x_0) \times (0,\infty)$ with intensity measure
+\begin{align*}
+\mu^*(dx, dy) = R(dx) F_W^{*N(1-F_J(x))}(dy),
+\end{align*}
+where $F_W^{*N(1-F_J(x))}(dy)$ is the convolution of the measure $F_W(dy)$ with itself, taken an independent geometric number of times, with success probability $p = 1-F_J(x)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Parts 1 \& 2 are proven in 
+\cite[Proposition 4.1 (i) \& (iii)]{resnick2013extreme}.
+Part 3 follows from \cite[Proposition 3.8]{resnick2013extreme}, 
+applied to the transition function $K(x,dy)$ corresponding to the law \eqref{eq:geometric-sum} of $L_{n+1} - L_n = y$, conditional on $V(L_n) = x$. 
+\end{proof}
+
+
+
 
 
 
@@ -328,6 +384,9 @@ x_n \circ x_n^{-1} \rightarrow x \circ x^{-1}.
 
 {\bf Acknowledgements.} P. Straka was supported by the Australian Research Council’s Discovery Early Career Research Award DE160101147.
 
+
+%\bibliographystyle{alpha}
+%\bibliography{CTRMstats}
 
 \begin{thebibliography}{KKBK12}
 
