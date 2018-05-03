@@ -88,12 +88,11 @@ Extreme Value theory deals with the observation of extreme events which are the 
 
 \section{CTRMs and their scaling limits}
 
-\subsection{Notation}
+\subsection{CTRMs}
 
-Let $c > 0$ be a scaling parameter (which may be ignored until the next section). 
-Let $(J^{(c)},W^{(c)}),(J^{(c)}_1,W^{(c)}_1),(J^{(c)}_2,W^{(c)}_2), \ldots$ 
-be i.i.d.\ bivariate random vectors on $\mathbb R \times [0, \infty)$. 
-The components $J^{(c)}$ and $W^{(c)}$ represent an event magnitude and 
+Let $(J,W),(J_1,W_1),(J_2,W_2), \ldots$ 
+be i.i.d.\ bivariate random vectors on $\mathbb R \times (0, \infty)$. 
+The components $J$ and $W$ represent an event magnitude and 
 a waiting time, respectively. 
 We first set up some notation: 
 
@@ -101,65 +100,69 @@ We first set up some notation:
 \begin{definition}
 Write 
 \begin{align}
-S^{(c)}(n) &= \sum_{i=1}^n W^{(c)}_i, 
+S(t) &= \sum_{i=1}^{\lfloor t \rfloor} W_i, 
 &
-M^{(c)}(n) &= \bigvee_{i=1}^n J^{(c)}_i
+M(t) &= \bigvee_{i=1}^{\lfloor t \rfloor} J_i
 \end{align} 
 for the cumulative sum of the waiting times and the cumulative maximum of the 
 magnitudes. 
-The renewal process associated with $S^{(c)}$ is 
+The renewal process associated with $S$ is 
 \begin{align} \label{eq:renewal-process}
-N^{(c)}(t) = \max\{n \in \mathbb N: S^{(c)}(n) \le t\}.
+N(t) = \max\{n \in \mathbb N: S(n) \le t\}.
 \end{align}
 Then the process
 \begin{align}
-V^{(c)}(t) 
-= M^{(c)}\left( N^{(c)}(t) \right) 
-= \bigvee_{k=1}^{N^{(c)}(t)} J^{(c)}_k, \quad t \ge 0.
+V(t) 
+= M\left( N(t) \right) 
+= \bigvee_{k=1}^{N(t)} J_k, \quad t \ge 0.
 \end{align}
 is called a CTRM process (Continuous Time Random Maxima). Finally, the process
 \begin{align}
-\tilde V^{(c)}(t) 
-= M^{(c)}\left( N^{(c)}(t) + 1 \right) 
-= \bigvee_{k=1}^{N^{(c)}(t) + 1} J^{(c)}_k, \quad t \ge 0.
+\tilde V(t) 
+= M\left( N(t) + 1 \right) 
+= \bigvee_{k=1}^{N(t) + 1} J_k, \quad t \ge 0.
 \end{align}
 a OCTRM (Oracle Continuous Time Random Maxima).
 \end{definition}
 
 The conceptual difference between the CTRM and the OCTRM is that for the CTRM, 
-the waiting time $W^{(c)}_k$ precedes the magnitude $J^{(c)}_k$, whereas for 
+the waiting time $W_k$ precedes the magnitude $J_k$, whereas for 
 the OCTRM it succeeds it. In other words, for the CTRM we have 
-$W^{(c)}_1, J^{(c)}_1, W^{(c)}_2, J^{(c)}_2, W^{(c)}_3, \ldots$ whereas for the
-OCTRM, we have $J^{(c)}_1, W^{(c)}_1, J^{(c)}_2, W^{(c)}_2, J^{(c)}_3, \ldots$. 
+$W_1, J_1, W_2, J_2, W_3, \ldots$ whereas for the
+OCTRM, we have $J_1, W_1, J_2, W_2, J_3, \ldots$. 
 
 
-\subsection{Limits of sum and maximum}
+\subsection{Rescaling}
 
-In this article, we study threshold crossing times and threshold events, which 
-are stochastic processes derived from the underlying (O)CTRM process. In
-particular, we establish scaling limit theorems, or invariance principles. As 
-the scale $c \to \infty$ increases, $W^{(c)}$ and $J^{(c)}$ decrease as follows: 
+\paragraph{}
+Let $c > 0$ be a scaling parameter, and let 
+$a(c), b(c)$ and $d(c)$ be deterministic scaling functions,
+defining rescaled waiting times and magnitudes as follows: 
 \begin{align}
 J^{(c)} &\stackrel{d}{=} \frac{J - d(c)}{a(c)}, 
 & 
 W^{(c)} &\stackrel{d}{=} \frac{W}{b(c)}
 \end{align}
-where $(J,W)$ is some random vector on $\mathbb R \times [0,\infty)$, 
-where $a(c), b(c)$ and $d(c)$ are deterministic scaling functions, 
-and where $\stackrel{d}{=}$ denotes equality in distribution. 
+where $\stackrel{d}{=}$ denotes equality in distribution. 
+Starting from $W^{(c)}$ and $J^{(c)}$ rather than $W$ and $J$, we thus define rescaled 
+versions $S^{(c)}, M^{(c)}, N^{(c)}, V^{(c)}$ and $\tilde V^{(c)}$ of the 
+stochastic processes introduced above. 
 
-It is a well-known result from classical extreme value theory that 
-if the distribution of $J$ is continuous, then there exist $a(c)$ and $d(c)$
+\paragraph{}
+Throughout, we assume that the distribution of $J$ is continuous. 
+It is then well-known in extreme value theory that there exist $a(c)$ and $d(c)$
 such that 
-$M^{(n)}(n)$ converges weakly to a generalized Extreme Value Distribution with shape parameter $\xi \in \mathbb R$, i.e.
+$M^{(c)}(c)$ converges weakly to a random variable $A$ with 
+Generalized Extreme Value (GEV) distribution. 
 \begin{align}
-M^{(n)}(n) \stackrel{d}{\to} A,
+M^{(c)}(c) \stackrel{d}{\to} A,
+\quad \PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right). \label{Mises}
 \end{align}
-where the distribution of $A$ is given by
-\begin{align}
-\PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right). \label{Mises}
-\end{align}
-Equation \eqref{Mises} is the so-called van-Mises representation for Extreme Value distributions. For $\xi>0$ one gets a Fr\'echet distribution, for $\xi<0$ a Weibull and for $(1+\xi z)=e$ a Gumbel distribution. We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
+Equation \eqref{Mises} is the so-called van-Mises representation for 
+Extreme Value distributions. 
+It comprises the Fr\'echet ($\xi>0$), Weibull ($\xi<0$),
+and Gumbel ($\xi = 0$) distributional families. 
+We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
 distribution of the random variable $\sigma A + \mu$. 
 
 The extremal limit theorem allows for an extension to a functional
