@@ -151,12 +151,13 @@ stochastic processes introduced above.
 \paragraph{}
 Throughout, we assume that the distribution of $J$ is continuous. 
 It is then well-known in extreme value theory that there exist $a(c)$ and $d(c)$
-such that 
-$M^{(c)}(c)$ converges weakly to a random variable $A$ with 
-Generalized Extreme Value (GEV) distribution. 
+such that as $c \to \infty$,
+$M^{(c)}(c)$ converges weakly to a random variable $A$ with a
+Generalized Extreme Value (GEV) distribution: 
 \begin{align}
 M^{(c)}(c) \stackrel{d}{\to} A,
-\quad \PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right). \label{Mises}
+\quad \PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right), 
+\quad 1 + \xi z > 0. \label{Mises}
 \end{align}
 Equation \eqref{Mises} is the so-called van-Mises representation for 
 Extreme Value distributions. 
@@ -165,11 +166,11 @@ and Gumbel ($\xi = 0$) distributional families.
 We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
 distribution of the random variable $\sigma A + \mu$. 
 
+\paragraph{}
 The extremal limit theorem allows for an extension to a functional
-limit: assume that the norming sequences $a(n)$ and $d(n)$ are as 
-in Theorem~\ref{th:GP}. Then 
+limit: 
 \begin{align*}
-M^{(c)}(\lfloor ct \rfloor)
+M^{(c)}(ct)
 \stackrel{d}{\to} A(t),
 \quad c \to \infty.
 \end{align*}
@@ -184,34 +185,39 @@ F_A(\wedge_{i=2}^d x_i)^{t_2-t_1}
 \end{align*}
 with $F_A(x)$ being a GEV distribution.
 
-In this text, we assume that the waiting times $W^{(c)}_k$ have a tail
-parameter $\beta \in (0,1)$, i.e. 
-$\PP(W^{(c)} > t) \sim L(t) t^{-\beta}$ as $t \uparrow \infty$ 
+\paragraph{}
+We study the case where the waiting times $W$ have a heavy tail with
+parameter $\beta \in (0,1)$, i.e.\ 
+$$
+\PP(W > t) \sim L(t) t^{-\beta}, \quad t \uparrow \infty
+$$ 
 for some slowly varying function $L(t)$.\footnote{
 We write $f(t) \sim g(t)$ if their quotient converges to $1$.
 }
-The $W^{(c)}_k$ are then said to lie in the 
+The $W_k$ are then said to lie in the 
 domain of attraction of a stable law, meaning that 
 \begin{align}\label{eq:sclt}
-S^{(n)}(n) \overset{d}{\longrightarrow} D, 
-\quad n \to \infty
+S^{(c)}(c) \overset{d}{\longrightarrow} D, 
+\quad c \to \infty
 \end{align}
-exists, for some regularly varying $b(c)$ at $\infty$ with parameter $1/\beta$;
-we write $b(c) \in {\rm RV}_\infty(1/\beta)$.
-The limit $D$ is then a positively skewed stable random variable, with
-$\E[\exp(-sD)] = \exp(-s^\beta)$.
+exists, for some $b(c)$ which varies regularly at $\infty$ with exponent 
+$1/\beta$. 
+The limit $D$ is then a positively skewed stable random variable, defined via
+its Laplace transform $\E[\exp(-sD)] = \exp(-s^\beta)$.
 As for the maximum, the following functional limit theorem holds for the sum:
 \begin{align}
-S^{(c)}(\Floor{ct}) \overset{d}{\longrightarrow} D(t), 
+S^{(c)}(ct) \overset{d}{\longrightarrow} D(t), 
 \quad c \to \infty
 \end{align}
 with convergence in the Skorokhod $J_1$ topology.
 The limit $D(t)$ is a stable subordinator, i.e.\ an increasing
-L\'evy process with Laplace transform $\exp(-t s^\beta)$.\\ 
+L\'evy process with Laplace transform $\exp(-t s^\beta)$.
+
+\paragraph{}
 It is well known (see e.g.\ \cite{limitCTRW}) that the renewal
 process then satisfies the functional limit
 \begin{align}
-N(ct)/\tilde b(c) \cd E(t) = \inf\{r: D(r) > t\}, 
+N^{(c)}(t)/\tilde b(c) \cd E(t) = \inf\{r: D(r) > t\}, 
 \quad c \to \infty
 \end{align}
 for a scaling function $\tilde b(c)$ which is 
@@ -224,16 +230,21 @@ Note that $\tilde b \in {\rm RV}_\infty(\beta)$
 \cite{limitCTRW}.
 The limit process $E(t)$ is called the \emph{inverse} stable
 subordinator \cite{invSubord}.
-Was hier noch alles rein muss: BUT KEEP IT SHORT
-\begin{itemize} 
-\item extreme value distribution
-\item convergence of M(n)
-\item Überleiten zu CTRM, via heavy-tailed waiting times, etc.
-\item $J_1$ convergence definition
-\item $J_1$ convergence of M(nt)
-\item defintion of extremal processes 
-\end{itemize}
 
+\paragraph{}
+Finally, we can give the functional limit of the CTRM and OCTRM processes. 
+For the OCTRM, we have 
+\begin{align}
+  \lim \limits_{c \to \infty} \tilde V^{(c)}(t) = \tilde V(t) 
+  := A \circ E(t),
+\end{align}
+where $\circ$ denotes stochastic process composition. For the CTRM, we have 
+\begin{align}
+\lim \limits_{c \to \infty} V^{(c)}(t) = V(t) 
+:= (A_- \circ E)_+(t),
+\end{align}
+where $A_-$ denotes the version of $A$ with left-continuous sample paths, and 
+where the composition is re-cast to be right-continuous; see \cite{Hees17}. 
 
 
 \section{Scaling limits of threshold event time and magnitude}
