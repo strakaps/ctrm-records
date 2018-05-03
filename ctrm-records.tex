@@ -221,7 +221,7 @@ Note that $\tilde b \in {\rm RV}_\infty(\beta)$
 \cite{limitCTRW}.
 The limit process $E(t)$ is called the \emph{inverse} stable
 subordinator \cite{invSubord}.
-Was hier noch alles rein muss:
+Was hier noch alles rein muss: BUT KEEP IT SHORT
 \begin{itemize} 
 \item extreme value distribution
 \item convergence of M(n)
@@ -230,29 +230,6 @@ Was hier noch alles rein muss:
 \item $J_1$ convergence of M(nt)
 \item defintion of extremal processes 
 \end{itemize}
-
-\begin{proposition}
-The CTRM and OCTRM processes are Semi-Markov processes: 
-Let $\mathcal R = \{0\} \cup \{\sum_{k=1}^n W_k, n \in \mathbb N\}$ denote the set of renewal times, and let 
-\begin{align*}
-Z(t) = t - \sup((-\infty, t] \cap \mathcal R)
-\end{align*}
-be the \emph{age}, i.e.\ the time passed since the last renewal. Then the bivariate processes 
-\begin{align*}
-(V(t), Z(t)), \quad (\tilde V(t), Z(t)), \quad t \ge 0,
-\end{align*}
-are Markov processes with respect to their natural filtrations $\mathcal F_t = \sigma(V(s): s \le t)$ and $\tilde{\mathcal F}_t = \sigma(\tilde V(s): s \le t)$. 
-\end{proposition}
-
-The proof is deferred to Section \ref{sec:records}.
-
-In XX it was shown that the CTRM $V(t) = M(N(t)$ and the OCTRM $\tilde V(t)$ have the following functional scaling limit in the Skorokhod $J_1$ topology: 
-\begin{align*}
-[V(ct) - d(\tilde b(c))] / a(\tilde b(c)) \stackrel{d}{\to} 
-A(E(t)), \quad c \to \infty.
-\end{align*}
-Hence its scaling limit results from the time-change .....
-We set $M(0) = x_L$, and $\max\{\} = 0$. 
 
 
 
@@ -366,6 +343,31 @@ Define the bivariate tail function $\overline \nu(x,t)$ via
 
 
 \section{Semi-Markov property of Record process}
+
+\begin{proposition}
+The CTRM and OCTRM processes are Semi-Markov processes: 
+Let $\mathcal R = \{0\} \cup \{\sum_{k=1}^n W_k, n \in \mathbb N\}$ denote the set of renewal times, and let 
+\begin{align*}
+Z(t) = t - \sup((-\infty, t] \cap \mathcal R)
+\end{align*}
+be the \emph{age}, i.e.\ the time passed since the last renewal. Then the bivariate processes 
+\begin{align*}
+(V(t), Z(t)), \quad (\tilde V(t), Z(t)), \quad t \ge 0,
+\end{align*}
+are Markov processes with respect to their natural filtrations $\mathcal F_t = \sigma(V(s): s \le t)$ and $\tilde{\mathcal F}_t = \sigma(\tilde V(s): s \le t)$. 
+\end{proposition}
+
+The proof is deferred to Section \ref{sec:records}.
+
+In XX it was shown that the CTRM $V(t) = M(N(t)$ and the OCTRM $\tilde V(t)$ have the following functional scaling limit in the Skorokhod $J_1$ topology: 
+\begin{align*}
+[V(ct) - d(\tilde b(c))] / a(\tilde b(c)) \stackrel{d}{\to} 
+A(E(t)), \quad c \to \infty.
+\end{align*}
+Hence its scaling limit results from the time-change .....
+We set $M(0) = x_L$, and $\max\{\} = 0$. 
+
+
 
 \section{Point process characterization of records}
 \label{sec:records}
