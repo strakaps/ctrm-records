@@ -247,39 +247,36 @@ where $A_-$ denotes the version of $A$ with left-continuous sample paths, and
 where the composition is re-cast to be right-continuous; see \cite{Hees17}. 
 
 
-\section{Scaling limits of threshold event time and magnitude}
+\section{Threshold events: time and magnitude}
 
 \begin{definition}
-Let $\ell \in (x_L, x_R)$ be a threshold, and write 
-$$
-p(c) := 1-F_J^{(c)}(\ell) = 1-F_J(a(c) \ell + d(c))
-$$
-for the probability of a threshold crossing at scale $c$. 
-Write 
-$$
-N(p(c)) := \min\{n: J^{(c)}_n > \ell\} \sim {\rm Geo}(p(c))
-$$
-for the index of the first threshold 
-exceedance, and call
+Write $\mathbf U$ for the interior of the support of the GEV distribution from 
+\eqref{Mises}. 
+Let $u \in \mathbf U$ be a threshold, and write 
+$
+N^{(c)}(u) := \min\{n: J^{(c)}_n > u\}
+$
+for the index of the first threshold exceedance. 
+Then
 \begin{align*}
-  Y^{(c)}(\ell) := J^{(c)}_{N(p(c))}
+  Y^{(c)}(u) := J^{(c)}_{N^{(c)}(u)}
 \end{align*}
-the \textbf{threshold event magnitude}. The random variables 
+is called the \textbf{threshold event magnitude}. The random variables 
 \begin{align}
-  T^{(c)}(\ell) = \sum_{n=1}^{N(p(c))} W^{(c)}_k \quad \text{resp.} \quad 
-  T'^{(c)}(\ell) = \sum_{n=1}^{N(p(c))-1} W^{(c)}_k
+  T^{(c)}(u) = \sum_{n=1}^{N^{(c)}(u)} W^{(c)}_n \quad \text{resp.} \quad 
+  T'^{(c)}(u) = \sum_{n=1}^{N^{(c)}(u)-1} W^{(c)}_n
 \end{align}
 are then called the \textbf{threshold event time} for the CTRM resp.\ the 
 OCTRM. 
 \end{definition}
 
 \begin{proposition}[don't know if we'll need this]\label{lem:independence}
-Let $\ell \in (x_L, x_R)$. 
+Let $u \in (x_L, x_R)$. 
 \begin{enumerate}
   \item 
-  $T'(\ell)$ and $Y(\ell)$ are independent. 
+  $T'(u)$ and $Y(u)$ are independent. 
   \item
-  $Y(\ell)$ has the same distribution as $J$ conditional on $J > \ell$. 
+  $Y(u)$ has the same distribution as $J$ conditional on $J > u$. 
 \end{enumerate}
 \end{proposition}
 
@@ -316,10 +313,10 @@ $(W_{N(p)}, J_{N(p)})$ being independent.
 
 It is well-known, that the excess function of $J$ is asymptotically Generalised Pareto distributed, i.e.
 \begin{align*}
-\PP(J_1 - \ell > y | J_1 > \ell) 
-\approx (1+ \xi y / \tilde \sigma)^{-1/\xi} \rightarrow 1 - H(y) \text{ as } \ell \uparrow x_R,
+\PP(J_1 - u > y | J_1 > u) 
+\approx (1+ \xi y / \tilde \sigma)^{-1/\xi} \rightarrow 1 - H(y) \text{ as } u \uparrow x_R,
 \end{align*}
-where $\tilde \sigma :=\sigma + \xi(\ell-\mu)$, $y>0$ and $1+\xi y/\tilde \sigma >0$. A distribution with CDF $H(y)$ is said to be from the \textbf{Generalised Pareto family}
+where $\tilde \sigma :=\sigma + \xi(u-\mu)$, $y>0$ and $1+\xi y/\tilde \sigma >0$. A distribution with CDF $H(y)$ is said to be from the \textbf{Generalised Pareto family}
 $GP(\xi,\bar \sigma)$.\\  
 
 \begin{theorem}(Verteilungskonvergenz der exceedance time)
@@ -388,8 +385,8 @@ Define the bivariate tail function $\overline \nu(x,t)$ via
 
 \begin{theorem}
 \begin{align}
-\pr [T(\ell) > t, Y(\ell) > y]
-= \iint\limits_{x \le \ell, t' \in [0,t)} \overline \nu(y, t - t') U(dx, dt')
+\pr [T(u) > t, Y(u) > y]
+= \iint\limits_{x \le u, t' \in [0,t)} \overline \nu(y, t - t') U(dx, dt')
 \end{align}
 \end{theorem}
 
