@@ -270,23 +270,25 @@ are then called the \textbf{threshold event time} for the CTRM resp.\ the
 OCTRM. 
 \end{definition}
 
+(Note that $J^{(c)} \le u$ iff $J \le a(c) u + d(u)$, and that 
+$a(c) u + d(u) \uparrow x_R$ as $c \to \infty$.) 
+
 \begin{theorem}
   At scale $c$, define the stochastic processes 
   \begin{align*}
-    Y^{(c)} &:= \{Y^{(c)}(x)\}_{x \in D}, 
-    & T^{(c)} &:= \{T^{(c)}(x)\}_{x \in D}, 
-    & T'^{(c)} &:= \{T'^{(c)}(x)\}_{x \in D}
+    Y^{(c)} &:= \{Y^{(c)}(u)\}_{u \in \mathbf U}, 
+    & T^{(c)} &:= \{T^{(c)}(u)\}_{u \in \mathbf U}, 
+    & T'^{(c)} &:= \{T'^{(c)}(u)\}_{u \in \mathbf U}.
   \end{align*}
-  where $D$ is the support of the GEV distribution which attracts 
-  $J$. Then in the Skorokhod $M_1$-topology, the following limits exist:
+Then in the Skorokhod $M_1$-topology, the following limits exist:
   \begin{enumerate}
     \item 
-    $\lim \limits_{c \to \infty} Y^{(c)} = Y := \{A \circ A^{-1}(x)\}_{x \in D}$
+    $\lim \limits_{c \to \infty} Y^{(c)} = Y := \{A \circ A^{-1}(u)\}_{u \in \mathbf U}$
     \item
-    $\lim \limits_{c \to \infty} T^{(c)} = T := \{D \circ A^{-1}(x)\}_{x \in D}$
+    $\lim \limits_{c \to \infty} T^{(c)} = T := \{D \circ A^{-1}(u)\}_{u \in \mathbf U}$
     \item
     $\lim \limits_{c \to \infty} T'^{(c)} = T' 
-    := \{(D_- \circ A^{-1}_-)_+(x)\}_{x \in D}$
+    := \{(D_- \circ A^{-1}_-)_+(u)\}_{u \in \mathbf U}$
   \end{enumerate}
 \end{theorem}
 
