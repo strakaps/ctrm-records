@@ -254,17 +254,17 @@ Write $\mathbf U$ for the interior of the support of the GEV distribution from
 \eqref{Mises}. 
 Let $u \in \mathbf U$ be a threshold, and write 
 $
-N^{(c)}(u) := \min\{n: J^{(c)}_n > u\}
+\tau^{(c)}(u) := \min\{n: J^{(c)}_n > u\}
 $
 for the index of the first threshold exceedance. 
 Then
 \begin{align*}
-  Y^{(c)}(u) := J^{(c)}_{N^{(c)}(u)}
+  Y^{(c)}(u) := J^{(c)}_{\tau^{(c)}(u)}
 \end{align*}
 is called the \textbf{threshold event magnitude}. The random variables 
 \begin{align}
-  T^{(c)}(u) = \sum_{n=1}^{N^{(c)}(u)} W^{(c)}_n \quad \text{resp.} \quad 
-  T'^{(c)}(u) = \sum_{n=1}^{N^{(c)}(u)-1} W^{(c)}_n
+  T^{(c)}(u) = \sum_{n=1}^{\tau^{(c)}(u)} W^{(c)}_n \quad \text{resp.} \quad 
+  T'^{(c)}(u) = \sum_{n=1}^{\tau^{(c)}(u)-1} W^{(c)}_n
 \end{align}
 are then called the \textbf{threshold event time} for the CTRM resp.\ the 
 OCTRM. 
