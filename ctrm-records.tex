@@ -62,7 +62,7 @@
 \newcommand{\ppartial}[2]{\dfrac{\partial {#1}}{\partial {#2} }}
 \newcommand{\cdj}{\overset{d}{\underset{J_1}{\longrightarrow}}}
 
-\title{Exceedances and Records Heavy-Tailed Max-Renewal Processes}
+\title{Threshold Exceedances and Records of Continuous Time Random Maxima}
 \author{Nathan Giang \and Katharina Hees \and Peter Straka}
 
 
@@ -86,7 +86,7 @@ Extreme Value theory deals with the observation of extreme events which are the 
 Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard, which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations.
 
 
-\section{The Max-Renewal Process}
+\section{CTRMs and their scaling limits}
 
 \subsection{Notation}
 
@@ -160,7 +160,8 @@ where the distribution of $A$ is given by
 \PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right). \label{Mises}
 \end{align}
 Equation \eqref{Mises} is the so-called van-Mises representation for Extreme Value distributions. For $\xi>0$ one gets a Fr\'echet distribution, for $\xi<0$ a Weibull and for $(1+\xi z)=e$ a Gumbel distribution. We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
-distribution of the random variable $\sigma A + \mu$. \\
+distribution of the random variable $\sigma A + \mu$. 
+
 The extremal limit theorem allows for an extension to a functional
 limit: assume that the norming sequences $a(n)$ and $d(n)$ are as 
 in Theorem~\ref{th:GP}. Then 
@@ -255,7 +256,7 @@ We set $M(0) = x_L$, and $\max\{\} = 0$.
 
 
 
-\section{Scaling limits of threshold event and threshold crossing time}
+\section{Scaling limits of threshold event time and magnitude}
 
 \begin{definition}
 The \textbf{threshold event} and the \textbf{threshold crossing time} 
@@ -273,10 +274,11 @@ In the following proposition we list some results about the relationship between
 Let $(V_t)_{t \geq 0}$ resp. $(\tilde{V}_t)_{t \geq 0}$ be a (coupled) CTRM resp. OCTRM process, and let $\ell \in [x_L,x_R]$.
 \begin{enumerate}
 \item[(i)]
-The exceedances $(X_{\ell, k})_{k \in \mathbb N}$ and exceedance times 
-$(T_{\ell, k})_{k \in \mathbb N}$ are both i.i.d.
+The sequence of pairs $(Y^{(c)}_{\ell, k}, T^{(c)}_{\ell, k})_{k \in \mathbb N}$ 
+is i.i.d.
 \item[(ii)]
-In the OCTRM case, the exceedance $X_{\ell, k}$ and the corresponding exceedance time $T_{\ell, k}$ are independent for each $k \in \mathbb N$. 
+In the OCTRM case, the threshold event magnitude $Y_{\ell, k}$ and the 
+corresponding exceedance time $T_{\ell, k}$ are independent for each $k \in \mathbb N$. 
 \item[(iii)]
 In the CTRM case, the exceedance and exceedance time are not necessarily independent. 
 \end{enumerate}
@@ -363,6 +365,8 @@ Define the bivariate tail function $\overline \nu(x,t)$ via
 \end{theorem}
 
 
+\section{Semi-Markov property of Record process}
+
 \section{Point process characterization of records}
 \label{sec:records}
 
@@ -441,7 +445,7 @@ applied to the transition function $K(x,dy)$ corresponding to the law \eqref{eq:
 
 
 
-
+\section{Governing Equations of CTRM limits}
 
 
 
