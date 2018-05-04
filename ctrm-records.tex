@@ -318,24 +318,112 @@ Define the bivariate tail function $\overline \nu(x,t)$ via
 \end{theorem}
 
 
-\section{Point process characterization of records}
+\section{Semi-Markov property of CTRMs}
 \label{sec:records}
 
-The book \cite[Chapter 4]{resnick2013extreme} nicely characterizes the structure of records of extreme value processes. Record values and inter-record times follow a bivariate Poisson Point Process, whose intensity measure depends on the underlying distribution of event magnitudes. We generalize these results for max-renewal processes with regularly varying waiting times with infinite mean. 
-
-A \textit{record time} $L$ for a CTRM $V(t)$ is defined by 
-\begin{align*}
-V(L) > V(t), \quad t < L.
-\end{align*}
-Paths of CTRMs are piecewise constant, non-decreasing and right-continuous, hence the above is well-defined and the $L$'s form an increasing sequence $\{L_n\}$. The \textit{record values} are then defined as $V(L_n)$. Clearly, the $L_n$ lie in the set $\mathcal R$ of renewal times, i.e.\ $L_n = W_1 + \ldots + W_{\tau(n)}$ for some integer $\tau(n)$. 
-
-Given a record at $L_n$, the next record time $L_{n+1}$ occurs with the first event magnitude $J_k, k \ge \tau(n)$, which is larger than $V(L_n)$. As the $J_k$ are i.i.d., $\tau(n+1) - \tau(n)$ must be geometrically distributed, with parameter $p = 1 - F_J(V(L_n))$, and hence 
-\begin{align} \label{eq:geometric-sum}
-L_{n+1} - L_n \stackrel{d}{=} \sum_{k=1}^{N(p)} W_k
+\paragraph{}
+The maximal process $M = \{M(n)\}_{n\in \mathbb N}$ 
+and the extremal process $A = \{A(t)\}_{t > 0}$
+are well understood, see e.g. \cite[Chapter 4]{resnick2013extreme}. 
+Both are Markov processes with piecewise constant non-decreasing sample paths, 
+in discrete time ($M$) resp. continuous time ($A$). 
+The sample paths of $A$ are right-continuous. 
+The jump times (i.e. points of increase) $\tau_n$ are called \emph{record times}, 
+and their values at the record times are called \emph{records}. 
+At a record $x$, the holding time for $M$ follows a ${\rm Geo}(1-F(x))$ distribution, 
+where $F(x)$ is the cumulative distribution of magnitudes. 
+For $A$, the holding time is ${\rm Exp}(-\log G(x))$ distributed, where $G(x)$
+is the underlying GEV distribution.\footnote{In general, extremal processes can 
+be defined using any continuous distribution $F$, but the limit 
+\eqref{eq:extremal-limit} results in the GEV distribution $G$.}
+The probability distribution of the next record $y$ is simply given by 
+\begin{align} \label{eq:record-chain-1}
+  \PP[M(\tau_{n+1}) > y | M(\tau_n) = x] &= 1 \wedge \frac{1-F(y)}{1-F(x)}, 
+  \\
+  \label{eq:record-chain-2}
+  \PP[A(\tau_{n+1}) > y | A(\tau_n) = x] &= 1 \wedge \frac{-\log G(y)}{-\log G(x)}.
 \end{align}
-where $N(p) \sim {\rm Geom}(p)$, independent of the $W_k$. 
+Finally, even more can be said about the structure of records: 
+the set of all records is a Poisson Point process (PPP) with
+mean measure $R(dx) = d(-\log (1-F(x)))$ for $M$ and 
+$d(-\log (-\log G(x)))$ for $A$.
+In the special case $F(x) = 1-e^{-x}$ resp. where $G(x)$ is the Gumbel distribution 
+($\xi = 0$), the mean measure is Lebesgue measure (on $(0, \infty)$ resp. $\mathbb R$).
 
-The record values $V(L_n)$ form a Markov chain (see e.g.\ \cite{resnick2013extreme}), and moreover we may characterize the record structure of CTRMs as follows: 
+
+\paragraph{}
+Paths of the CTRM process $V^{(c)}$ and the CTRM limit process $V$
+result from time changes of $M^{(c)}$ and $A$. 
+Hence the set of points traversed by them, i.e. the set of records, 
+follows the same probability law, and the only difference lies in the 
+distribution of the holding times. 
+
+\begin{proposition}
+  The CTRM process $V^{(c)}$, the OCTRM process $\tilde V^{(c)}$ and their 
+  scaling limits $V$ resp. $\tilde V$, are all Semi-Markov processes. 
+  Their holding times at a record $x$ are, respectively, 
+  \begin{align}
+    T^{(c)}(x), \quad W^{(c)}(x) + T'^{(c)}(x), \quad T(x), \quad W(x) + T'(x),
+  \end{align}
+  where $W^{(c)}(x)$ resp. $W(x)$ is an independent random variable with density 
+  \begin{align} \label{eq:conditional-W}
+    t \mapsto \frac{\nu^{(c)}(x,t)}{\int \limits_{[0,\infty)} \nu^{(c)}(x,t')\,dt'}
+    \quad \text{ resp. } \quad 
+    t \mapsto \frac{\nu(x,t)}{\int \limits_{[0,\infty)} \nu(x,t')\,dt'}
+  \end{align}
+\end{proposition}
+
+\begin{proof}
+  As mentioned above, the sequence of records is a Markov chain, and it only 
+remains to show that the holding time $\tau_{n+1} - \tau_n$ only depends on 
+the current record $V(\tau_n)$, that is, 
+\begin{align}
+  \PP[\tau_{n+1} - \tau_n | \tau_1, \ldots, \tau_n, V(\tau_1), \ldots V(\tau_n)]
+  = \PP[\tau_{n+1} - \tau_n | V(\tau_n)].
+\end{align}
+
+For the CTRM, if $x = V^{(c)}(\tau_n) = J^{(c)}_k$ is a record, then the record time 
+is $\tau_n = W^{(c)}_1 + \ldots + W^{(c)}_k$.
+It marks the beginning of the waiting time $W^{(c)}_{k + 1}$, a magnitude
+$J^{(c)}_{k+1}$, and so on.
+Hence the CTRM is renewed at $\tau_n$, and the time until 
+the next record $y = V^{(c)}(\tau_{n+1})$, i.e. the holding time at $x$, is
+equal in distribution to $T^{(c)}(x)$.
+
+For the OCTRM, and a record as above, 
+the record time is $\tau_n = W^{(c)}_1 + \ldots + W^{(c)}_{k-1}$.
+This shows that the OCTRM is renewed only after the following waiting time $W^{(c)}_k$. 
+The holding time is hence equal in distribution to 
+$W(x) + T'^{(c)}(x)$, 
+where $W(x)$ has the density \eqref{eq:conditional-W}
+
+For the CTRM limit, let $\tau$ be a record time, i.e. $V(\tau) = x$ and  
+$V(t) < x$ if $t < \tau$. 
+Then for any $\eps > 0$, 
+$\tau = \inf\{t: V(t) > x-\eps\} = \inf\{t: (A_- \circ E)_+(t) > x-\eps\}
+= \inf\{t: A_- \circ E(t) > x-\eps\}$.
+By construction, $E$ must be right-increasing at $\tau$, 
+i.e. $E(t) > E(\tau)$ if $t > \tau$. If it wasn't, we would have
+$V(\tau) = A_- \circ E(\tau)$, which is the value of $A$ just before it reaches 
+$x$, in cotradition to $V(\tau) = x$.
+Thus $\tau = D(u)$ for some $u \ge 0$, which means that $\tau$ is a renewal point
+(compare \cite{Bertoin04}). 
+The time until an exceedance of $x$ is hence just $T(x)$. 
+
+For the OCTRM limit, let $x$ be a record and $\tau$ a record time, i.e. 
+$\tilde V(\tau) = A \circ E(t) = x$ and $\tilde V(\tau - \eps) < x$. 
+Then $E(\tau)$ is a jump time of $A$, i.e. $u = E(\tau)$ marks the first occurrence 
+of an event $J_u \ge x$. 
+Since we do not assume the uncoupled
+case, $D$ may also have a jump $W_u > 0$ at $u$. 
+This means that $E$ is constant on the interval $[\tau, \tau + W_u]$, 
+and the next renewal time after $\tau$ is $\tau + W_u$.
+Given the event $J_u = x$, the distribution of $W_u | J_u = x$ 
+has the density \eqref{eq:conditional-W}.
+Then the time until the next record $y$, i.e. the holding time at $x$, is 
+equal in distribution to $W(x) + T'(x)$. 
+\end{proof}
+
 
 \begin{proposition}
 \begin{enumerate}
