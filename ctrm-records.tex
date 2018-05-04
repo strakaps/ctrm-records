@@ -171,16 +171,15 @@ distribution of the random variable $\sigma A + \mu$.
 \paragraph{}
 The extremal limit theorem allows for an extension to a functional
 limit: 
-\begin{align*}
+\begin{align} \label{eq:extremal-limit}
 M^{(c)}(ct)
 \stackrel{d}{\to} A(t),
 \quad c \to \infty.
-\end{align*}
+\end{align}
 The convergence is in $J_1$-topology, the strongest of the topologies defined by Skorokhod in XX and which is sometimes also called Skorokhod topology. The limit process $A(t)$ is an F-extremal process, with finite-dimensional distributions given by
 \begin{align*}
-\PP(A(t_i)\leq x_i,1\leq i \leq d) = F_A(\wedge_{i=1}^d x_i)^{t_1}  F_A(\wedge_{i=2}^d x_i)^{t_2-t_1} \cdot \ldots \cdot F_A(x_d)^{t_d-t_{d-1}},
+\PP(A(t_i)\leq x_i,1\leq i \leq d) = G(\wedge_{i=1}^d x_i)^{t_1}  G(\wedge_{i=2}^d x_i)^{t_2-t_1} \cdot \ldots \cdot G(x_d)^{t_d-t_{d-1}}.
 \end{align*}
-with $F_A(x)$ being a GEV distribution.
 
 \paragraph{}
 We study the case where the waiting times $W$ have a heavy tail with
