@@ -358,7 +358,7 @@ Hence the set of points traversed by them, i.e. the set of records,
 follows the same probability law, and the only difference lies in the 
 distribution of the holding times. 
 
-\begin{proposition}
+\begin{proposition} \label{prop:semi-markov}
   The CTRM process $V^{(c)}$, the OCTRM process $\tilde V^{(c)}$ and their 
   scaling limits $V$ resp. $\tilde V$, are all Semi-Markov processes. 
   Their holding times at a record $x$ are, respectively, 
@@ -425,39 +425,57 @@ equal in distribution to $W(x) + T'(x)$.
 \end{proof}
 
 
-\begin{proposition}
+\begin{theorem}
+Suppose $F_J$ is continuous, and let 
+\begin{align}
+  R(dx) = d(-\log(1-F(x))), \quad S(dx) = d(-\log(-\log G(x))).
+\end{align} 
+Then 
 \begin{enumerate}
-\item
-$\{V(L_n), n \ge 1\}$ is a Markov chain with stationary transition probabilities satisfying
-\begin{align*}
-\Pi(x, (y,\infty)) = 
-\begin{cases}
-(1-F(y)) / (1-F(x)), & y > x
-\\
-1, & y \le x
-\end{cases}
-\end{align*}
-\item
-$\{V(L_n), n \ge 1\}$ are the points of a Poisson random measure on $(x_l, x_0)$ with intensity measure
-\begin{align*}
-R(a,b] = R(b) - R(a)
-\end{align*}
-where $R(t) = -\log(1-F(t))$. 
-\item
-If $F_J$ is continuous, $\{V(L_n), L_{n+1} - L_n, n \ge 1\}$ are the points of a bivariate Poisson random measure on
-$(x_l, x_0) \times (0,\infty)$ with intensity measure
-\begin{align*}
-\mu^*(dx, dy) = R(dx) F_W^{*N(1-F_J(x))}(dy),
-\end{align*}
-where $F_W^{*N(1-F_J(x))}(dy)$ is the convolution of the measure $F_W(dy)$ with itself, taken an independent geometric number of times, with success probability $p = 1-F_J(x)$.
+  \item 
+  $\{(V^{(c)}(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $(x_l, x_0) \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = R(dx) \PP(T^{(c)}(x) \in dy),
+  \end{align}
+  \item
+  $\{(\tilde V^{(c)}(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $(x_l, x_0) \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = R(dx) \PP(W^{(c)}(x) + T^{(c)}(x) \in dy),
+  \end{align}
+  \item
+  $\{(V(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $\mathbf U \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = S(dx) \PP(T(x) \in dy),
+  \end{align}
+  \item
+  $\{(\tilde V(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $\mathbf U \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = S(dx) \PP(W(x) + T'(x) \in dy).
+  \end{align}
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
-Parts 1 \& 2 are proven in 
-\cite[Proposition 4.1 (i) \& (iii)]{resnick2013extreme}.
-Part 3 follows from \cite[Proposition 3.8]{resnick2013extreme}, 
-applied to the transition function $K(x,dy)$ corresponding to the law \eqref{eq:geometric-sum} of $L_{n+1} - L_n = y$, conditional on $V(L_n) = x$. 
+By \cite[Prop 4.1(iii)]{resnick2013extreme} and the observation that 
+$V^{(c)}$ and $\tilde V^{(c)}$ are time changes of maximal processes, 
+The records $V^{(c)}(\tau_n)$ resp. $\tilde V^{(c)}(\tau_n)$ form 
+a PPP with mean measure $R(dx)$. 
+Similarly, by \cite[Prop 4.8(iii)]{resnick2013extreme}, the records 
+$V(\tau_n)$ and $\tilde V(\tau_n)$ form a PPP with mean measure $S(dx)$. 
+By Proposition \ref{prop:semi-markov}, the holding times $\tau_{n+1} - \tau_n$
+are conditionally independent given their record 
+$V^{(c)}(\tau_n), \tilde V^{(c)}(\tau_n)$, etc.
+Applying \cite[Prop 3.8]{resnick2013extreme} to the kernels 
+$K(x,dy) = \PP(T^{(c)}(x) \in dy)$, etc., marks each record with its corresponding 
+holding time, and proves the theorem. 
 \end{proof}
 
 
