@@ -58,6 +58,7 @@
 \newcommand{\sign}{\mathop{\rm sign}}
 \newcommand{\Floor}[1]{{\lfloor {#1} \rfloor}}
 \newcommand{\cd}{\overset{d}{\longrightarrow}}
+\newcommand{\cJ}{\overset{J_1}{\longrightarrow}}
 \newcommand{\D}{\mathbb{D}}
 \newcommand{\ppartial}[2]{\dfrac{\partial {#1}}{\partial {#2} }}
 \newcommand{\cdj}{\overset{d}{\underset{J_1}{\longrightarrow}}}
@@ -98,7 +99,7 @@ We first set up some notation:
 
 
 \begin{definition}
-Write 
+We write $S^{(c)}(n)$ and $M^{(c)}(n)$ for the \textbf{cumulative sum of the waiting times} $(W^{(c)})_{i \in \N}$ and the \textbf{cumulative maximum of the magnitudes} $(J^{(c)})_{i \in \N}$, more precisely 
 \begin{align}
 S(t) &= \sum_{i=1}^{\lfloor t \rfloor} W_i, 
 &
@@ -110,19 +111,20 @@ The renewal process associated with $S$ is
 \begin{align} \label{eq:renewal-process}
 N(t) = \max\{n \in \mathbb N: S(n) \le t\}.
 \end{align}
-Then the process
+Finally the process
 \begin{align}
 V(t) 
 = M\left( N(t) \right) 
 = \bigvee_{k=1}^{N(t)} J_k, \quad t \ge 0.
 \end{align}
-is called a CTRM process (Continuous Time Random Maxima). Finally, the process
+is called a \textbf{CTRM process (Continuous Time Random Maxima)} and moreover the process
 \begin{align}
 \tilde V(t) 
 = M\left( N(t) + 1 \right) 
 = \bigvee_{k=1}^{N(t) + 1} J_k, \quad t \ge 0.
 \end{align}
-a OCTRM (Oracle Continuous Time Random Maxima).
+an \textbf{OCTRM (Oracle Continuous Time Random Maxima)}
+.
 \end{definition}
 
 The conceptual difference between the CTRM and the OCTRM is that for the CTRM, 
@@ -174,14 +176,9 @@ M^{(c)}(ct)
 \stackrel{d}{\to} A(t),
 \quad c \to \infty.
 \end{align*}
-Convergence is in Skorokhod's $J_1$ topology, and the limit
-process $A(t)$ is an \emph{extremal process}, with
-finite-dimensional distributions given by
+The convergence is in $J_1$-topology, the strongest of the topologies defined by Skorokhod in XX and which is sometimes also called Skorokhod topology. The limit process $A(t)$ is an F-extremal process, with finite-dimensional distributions given by
 \begin{align*}
-\PP(A(t_i)\leq x_i,1\leq i \leq d) 
-= F_A(\wedge_{i=1}^d x_i)^{t_1} 
-F_A(\wedge_{i=2}^d x_i)^{t_2-t_1}
-\ldots F_A(x_d)^{t_d-t_{d-1}},
+\PP(A(t_i)\leq x_i,1\leq i \leq d) = F_A(\wedge_{i=1}^d x_i)^{t_1}  F_A(\wedge_{i=2}^d x_i)^{t_2-t_1} \cdot \ldots \cdot F_A(x_d)^{t_d-t_{d-1}},
 \end{align*}
 with $F_A(x)$ being a GEV distribution.
 
@@ -220,9 +217,7 @@ process then satisfies the functional limit
 N^{(c)}(t)/\tilde b(c) \cd E(t) = \inf\{r: D(r) > t\}, 
 \quad c \to \infty
 \end{align}
-for a scaling function $\tilde b(c)$ which is 
-asymptotically inverse to $b(c)$, in the sense
-of \cite[p.20]{seneta}: 
+for a scaling function $\tilde b(c)$ which is asymptotically inverse to $b(c)$, in the sense of \cite[p.20]{seneta}: 
 \begin{align}\label{eq:tildeb}
 b(\tilde b(c)) \sim c \sim \tilde b(b(c)).
 \end{align}
@@ -298,7 +293,29 @@ Then in the Skorokhod $M_1$-topology, the following limits exist:
 
 
 
+
+
 \section{Joint distribution of threshold event and threshold crossing time}
+
+We denote in the following with $X^{(c)}_{l,k}$ the $k$-th exceedance of the level $l$ and with $T^{(c)}_{l,k}$ the corresponding, preceding (and in the OCTRM case the subsequent) exceedance time, mathematically:
+\begin{align*}
+T^{(c)}_{l,1}&:=\inf\{t: V^{(c)}(t) > \ell\}, T^{(c)}_{l,k}:=\inf\{(T^{(c)}_{l,k-1},\infty): V^{(c)}(t) > \ell\}, \\
+X^{(c)}_{l,k}&:=V^{(c)}(T^{(c)}_{l,k})-l.
+\end{align*}
+In the following proposition we list some results about the relationship between the exceedances and their exceedance times.
+
+\begin{proposition}\label{lem:independence}
+	Let $(V_t)_{t \geq 0}$ resp. $(\tilde{V}_t)_{t \geq 0}$ be a (coupled) CTRM resp. OCTRM process, and let $\ell \in [x_L,x_R]$.
+	\begin{enumerate}
+		\item[(i)]
+		The exceedances $(X_{\ell, k})_{k \in \mathbb N}$ and exceedance times 
+		$(T_{\ell, k})_{k \in \mathbb N}$ are both i.i.d.
+		\item[(ii)]
+		In the OCTRM case, the exceedance $X_{\ell, k}$ and the corresponding exceedance time $T_{\ell, k}$ are independent for each $k \in \mathbb N$, where in the CTRM case, the exceedance and exceedance time are not necessarily independent. 
+	\end{enumerate}
+\end{proposition}\begin{proof}
+	To write down!!
+\end{proof}
 
 Define the potential measure, or expected occupation time, of the bivariate 
 Markov process $(A(u),D(u))$:
