@@ -99,7 +99,7 @@ We first set up some notation:
 
 
 \begin{definition}
-We write $S^{(c)}(n)$ and $M^{(c)}(n)$ for the \textbf{cumulative sum of the waiting times} $(W^{(c)})_{i \in \N}$ and the \textbf{cumulative maximum of the magnitudes} $(J^{(c)})_{i \in \N}$, more precisely 
+We write $S(n)$ and $M(n)$ for the \textbf{cumulative sum of the waiting times} $(W_i)_{i \in \N}$ and the \textbf{cumulative maximum of the magnitudes} $(J_i)_{i \in \N}$, more precisely 
 \begin{align}
 S(t) &= \sum_{i=1}^{\lfloor t \rfloor} W_i, 
 &
@@ -208,7 +208,7 @@ S^{(c)}(ct) \overset{d}{\longrightarrow} D(t),
 \end{align}
 with convergence in the Skorokhod $J_1$ topology.
 The limit $D(t)$ is a stable subordinator, i.e.\ an increasing
-L\'evy process with Laplace transform $\exp(-t s^\beta)$.
+L\'evy process with Laplace transform $\exp(-t s^\beta)$. In the following we will exclude the case that $D(t)$ is not strictly increasing, in equality the case, that $D(t)$ is compound Poisson. 
 
 \paragraph{}
 It is well known (see e.g.\ \cite{limitCTRW}) that the renewal
@@ -265,8 +265,19 @@ are then called the \textbf{threshold event time} for the CTRM resp.\ the
 OCTRM. 
 \end{definition}
 
-(Note that $J^{(c)} \le u$ iff $J \le a(c) u + d(u)$, and that 
-$a(c) u + d(u) \uparrow x_R$ as $c \to \infty$.) 
+(Note that $J^{(c)} \le u$ iff $J \le a(c) u + d(c)$, and that 
+$a(c) u + d(c) \uparrow x_R$ as $c \to \infty$.) \\
+\ \\
+In the following we define with $\mathbb{D}_{u}(E)$ the subset of all functions $\alpha\in \mathbb{D}(E)$  which are unbounded from above. Furthermore $\mathbb{D}_{\uparrow}(E)$ resp. $\mathbb{D}_{\uparrow\uparrow}(E)$ is the subset of all functions $\alpha\in \mathbb{D}(E)$ with $\alpha$ monotone increasing resp. strictly increasing. Additionally we define $\mathbb{D}_{u,\uparrow}(E):=\mathbb{D}_{u}(E) \cap \mathbb{D}_{\uparrow}(E)$ and $\mathbb{D}_{u,\uparrow\uparrow}(E):=\mathbb{D}_{u}(E)\cap \mathbb{D}_{\uparrow\uparrow}(E)$.
+The right and left continuous inverse of a cadlag process  $\alpha \in D_{u}$ are defined by
+\begin{align*}
+\alpha^{-1}(t):=\inf\left\{s:\alpha(s) > t\right\} \hspace{1cm} \text{ und } \hspace{1cm} \alpha^{\leftarrow}(t):=\inf\left\{s:\alpha(s) \geq t\right\}.
+\end{align*}
+  respectively. Notice that   
+\begin{align*}
+\tau^{(c)}(u) = \inf \left\{t: M^{(c)}(t) >u \right\}
+\end{align*}
+is the right continuous inverse of the partial maxima process, also called the first hitting time of the partial maxima process. The processes $T^{(c)}$ and $T^{'(c)}$ are the right continuous inverses of the CTRM rsp. the OCTRM. 
 
 \begin{theorem}
   At scale $c$, define the stochastic processes 
@@ -288,7 +299,46 @@ Then in the Skorokhod $M_1$-topology, the following limits exist:
 \end{theorem}
 
 \begin{proof}
-  Kathi?
+We will first proof the second and third assertion. If we show that 
+  \begin{align}
+  T&=\{D \circ A^{-1}(u)\}_{u \in \mathbf U}=\{V^{-1}(u)\}_{u \in \mathbf U} \label{invCTRM}\\
+  T'&= \{(D_- \circ A^{-1}_-)_+(u)\}_{u \in \mathbf U}=\{\tilde V^{-1}(u)\}_{u \in \mathbf U} \label{invOCTRM}
+  \end{align}  
+the convergence 2. and 3. in the $M_1$-topology follows with Theorem 13.6.3 in Whitt. We therefore first show \eqref{invCTRM}. 
+Due to readability we define $\beta:=\left\{A(t)\right\}_{t>0}$ and $\sigma:=\left\{D(t)\right\}_{t>0}$, and so $\sigma^{-1}(t)=\left\{E(t)\right\}_{t>0}$. It is $\beta \in D_{\uparrow,u}$ and $\sigma \in D_{\uparrow \uparrow,u}$. Furthermore $\sigma^{-1}=\sigma^{\leftarrow}$, since $\sigma^{-1}$ is continuous (see Lemma 13.6.5 in \cite{Whitt2010}). Equation\eqref{invCTRM} is fulfilled, if we show that for all $x_0<a<x_F$
+\begin{align}
+((\beta^{-} \circ \sigma^{\leftarrow})^{+})^{-1}(a)=\sigma(\beta^{-1}(a)).\label{ErsteintrittGl1}
+\end{align}
+Since $(\beta^{-} \circ \sigma^{\leftarrow})^{+} \in D_{\uparrow,u}$ und $(x^{-1})^{-1}=x$ for $x \in D_{\uparrow,u}$ (see Corollary 13.6.1 in \cite{Whitt2010}) is \eqref{ErsteintrittGl1} equivalent to
+\begin{align*}
+(\beta^{-} \circ \sigma^{\leftarrow})^{+}(a)=(\sigma \circ \beta^{-1})^{-1}(a).
+\end{align*}
+This is again $x^{\leftarrow}(t)=x^{-1}(t-)$ equivalent to
+\begin{align*}
+(\beta^{-} \circ \sigma^{\leftarrow})(a)=(\sigma \circ \beta^{-1})^{\leftarrow}(a).
+\end{align*}
+The last equality is true since due to $x^{\leftarrow}(t) \leq s \Leftrightarrow x(s) \geq t$ for $x \in D_{\uparrow,u}$  (see Lemma 13.6.3. in \cite{Whitt2010}) and $(x^{-1})^{\leftarrow}=x^{-}$ for $x \in \mathbb{D}_{\uparrow,u}$, it follows taht
+\begin{align*}
+(\sigma \circ \beta^{-1})^{\leftarrow}(a)&=\inf \left\{s \geq 0: \sigma(\beta^{-1}(s)) \geq a \right\}\\
+&=\inf \left\{s \geq 0: \sigma^{\leftarrow}(a) \leq \beta^{-1}(s)\right\}\\
+&=\beta^{-}(\sigma^{\leftarrow}(a)).
+\end{align*}
+Equation \eqref{invOCTRM} is fulfilled if we show that for all $x_0<a<x_F$ and $s\geq  0$
+\begin{align*}
+(\beta \circ \sigma^{-1})^{-1}=(\sigma_{-} \circ \beta^{\leftarrow})^{+}.
+\end{align*}
+However, this is equivalent to
+\begin{align*}
+(\beta \circ \sigma^{-1})^{\leftarrow} = \sigma_{-} \circ \beta^{\leftarrow},
+\end{align*}
+which is true cause 
+\begin{align*}
+(\beta \circ \sigma^{-1})^{\leftarrow}(a)&=\inf \left\{s \geq 0: (\beta \circ \sigma^{-1})(s) \geq a\right\}\\
+&=\inf \left\{ s \geq 0: \beta^{\leftarrow}(a) \leq \sigma^{-1}(s) \right\}\\
+&=(\sigma^{-1})^{\leftarrow}(\beta^{\leftarrow}(a))
+\end{align*}
+and the fact that $(\sigma^{-1})^{\leftarrow}=\sigma_{-}$. Hence the assertion 3. follows.
+
 \end{proof}
 
 
