@@ -316,10 +316,10 @@ This is again $x^{\leftarrow}(t)=x^{-1}(t-)$ equivalent to
 \begin{align*}
 (\beta^{-} \circ \sigma^{\leftarrow})(a)=(\sigma \circ \beta^{-1})^{\leftarrow}(a).
 \end{align*}
-The last equality is true since due to $x^{\leftarrow}(t) \leq s \Leftrightarrow x(s) \geq t$ for $x \in D_{\uparrow,u}$  (see Lemma 13.6.3. in \cite{Whitt2010}) and $(x^{-1})^{\leftarrow}=x^{-}$ for $x \in \mathbb{D}_{\uparrow,u}$, it follows taht
+The last equality is true since due to $x^{\leftarrow}(t) \leq s \Leftrightarrow x(s) \geq t$ for $x \in D_{\uparrow,u}$  (see Lemma 13.6.3. in \cite{Whitt2010}) and $(x^{-1})^{\leftarrow}=x^{-}$ for $x \in \mathbb{D}_{\uparrow,u}$, it follows that
 \begin{align*}
-(\sigma \circ \beta^{-1})^{\leftarrow}(a)&=\inf \left\{s \geq 0: \sigma(\beta^{-1}(s)) \geq a \right\}\\
-&=\inf \left\{s \geq 0: \sigma^{\leftarrow}(a) \leq \beta^{-1}(s)\right\}\\
+(\sigma \circ \beta^{-1})^{\leftarrow}(a)&=\inf \left\{s \in \mathbf U: \sigma(\beta^{-1}(s)) \geq a \right\}\\
+&=\inf \left\{s \in \mathbf U: \sigma^{\leftarrow}(a) \leq \beta^{-1}(s)\right\}\\
 &=\beta^{-}(\sigma^{\leftarrow}(a)).
 \end{align*}
 Equation \eqref{invOCTRM} is fulfilled if we show that for all $x_0<a<x_F$ and $s\geq  0$
@@ -330,7 +330,7 @@ However, this is equivalent to
 \begin{align*}
 (\beta \circ \sigma^{-1})^{\leftarrow} = \sigma_{-} \circ \beta^{\leftarrow},
 \end{align*}
-which is true cause 
+which is true because 
 \begin{align*}
 (\beta \circ \sigma^{-1})^{\leftarrow}(a)&=\inf \left\{s \geq 0: (\beta \circ \sigma^{-1})(s) \geq a\right\}\\
 &=\inf \left\{ s \geq 0: \beta^{\leftarrow}(a) \leq \sigma^{-1}(s) \right\}\\
