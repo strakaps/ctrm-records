@@ -73,7 +73,7 @@
 \maketitle
 
 \begin{abstract}
-Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations. This theory provides a model for bursty events, where the waiting times between the observations are heavy tailed.\\
+Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations. This theory provides a model for bursty events, where the waiting times between the observations are heavy tailed.
 
 % This is where the abstract is placed. It should include a statement about the problem being addressed in the presentation (and paper, if submitted). Continue with a discussion of why it is important to address this problem. This may be followed by some summary information about the models and methods developed and/or used to address the problem. Conclude with a description of the key results and contributions that will be covered in the presentation (and paper).
 \end{abstract}
@@ -285,7 +285,7 @@ is the right continuous inverse of the partial maxima process, also called the f
     & T^{(c)} &:= \{T^{(c)}(u)\}_{u \in \mathbf U}, 
     & T'^{(c)} &:= \{T'^{(c)}(u)\}_{u \in \mathbf U}.
   \end{align*}
-Then in the Skorokhod $M_1$-topology, the following limits exist:
+These processes have the following limits: 
   \begin{enumerate}
     \item 
     $\lim \limits_{c \to \infty} Y^{(c)} = Y := \{A \circ A^{-1}(u)\}_{u \in \mathbf U}$
@@ -295,15 +295,79 @@ Then in the Skorokhod $M_1$-topology, the following limits exist:
     $\lim \limits_{c \to \infty} T'^{(c)} = T' 
     := \{(D_- \circ A^{-1}_-)_+(u)\}_{u \in \mathbf U}$
   \end{enumerate}
+where 1. holds with respect to the $J_1$ topology and 2.\&3. hold with 
+respect to the $M_1$ topology. 
 \end{theorem}
 
 \begin{proof}
-We will first proof the second and third assertion. If we show that 
+1. We view $(A^{(c)}, D^{(c)})$ and $(A, D)$ as random elements on 
+the Skorokhod space $\Omega$ of all right-continuous sample paths with 
+left-hand limits 
+in $\mathbb R \times \mathbb R$, defined on the open interval $(0,\infty)$. 
+Write $\PP^{(c)}$ and $\PP$ for their probability distributions on $\Omega$, 
+respectively.
+Let $S \subset \Omega$ be the subset of sample paths $(a,d)$ whose first 
+component $a$ is non-decreasing and has a discrete range 
+$\mathcal R(a) := \{a(t): t > 0\}$. 
+By discrete we mean that for each $r \in \mathcal R(a)$ there exists 
+$\varepsilon > 0$ such that 
+$(r-\varepsilon, r+\varepsilon) \cap \mathcal R(a) = \emptyset$.
+Since $A^{(c)}$ and $A$ are maximal resp. extremal processes, we have 
+$\PP^{(c)}(S) = \PP(S) = 1$ (see e.g. \cite[Prop 4.1 \& Prop 4.8]{resnick2013extreme}).
+Moreover, by \cite[Prop 4.20]{resnick2013extreme} we have that 
+$\PP^{(c)} \to \PP$, weakly with respect to the Skorokhod $J_1$ topology. 
+By the continuous mapping theorem, it then suffices to show that the mapping 
+$$
+\Phi: S \ni a \mapsto a \circ a^{-1} \in S
+$$
+is $J_1$-continuous. 
+Let $a_n$ be a sequence in $S$ such that $a_n \to a \in S$
+with respect to $J_1$. 
+Let $t > 0$, and let $t_n$ be any sequence such 
+that $t_n \to t$. By \cite[Th 3.6.5]{EthierKurtz}, it suffices to show 
+the following three statements: 
+\begin{enumerate}
+  \item 
+  $\Phi(a_n)(t_n) \to \{\Phi(a)(t), \Phi(a)(t-)\}$
+  \footnote{This means that $\Phi(a_n)(t_n)$ has at most two possible limit points, $\Phi(a)(t)$ or $\Phi(a)(t-)$.} 
+  \item
+  If $\Phi(a_n)(t_n) \to \Phi(a)(t)$ and $s_n \ge t$ and $s_n \to t$, then 
+  $\Phi(a_n)(s_n) \to \Phi(a)(t)$.
+  \item 
+  If $\Phi(a_n)(t_n) \to \Phi(a)(t-)$ and $s_n \le t$ and $s_n \to t$, then 
+  $\Phi(a_n)(s_n) \to \Phi(a)(t-)$.
+\end{enumerate}
+Now write $r(t) = \inf\{\mathcal R(a) \cap (t, \infty)\}$ and 
+$l(t) = \sup\{\mathcal R(a) \cap (0, t]\}$, 
+and define $r_n(t_n)$ and $l_n(t_n)$ similarly using $a_n$ and $t_n$. 
+Note that $\Phi(a)(t) = r(t)$ and $\Phi(a_n)(t_n) = r_n(t_n)$.
+If $t \notin \mathcal R(a)$, then 
+$$
+\mathcal R(a) \ni l(t) < t < r(t) \in \mathcal R(a).
+$$
+Since $a_n \to a$ in $J_1$, it follows that 
+$\mathcal R(a_n) \to \mathcal R(a)$ in the Hausdorff metric. 
+But then $\Phi(a_n)(t_n) \to r(t) = \Phi(a)(t)$, 
+and all three assertions follow, as $t_n \to t$ was chosen arbitrarily. 
+If on the other hand $t \in \mathcal R(a)$, then 
+$$
+\mathcal R(a) \ni l(t) = t = \Phi(a)(t-) < \Phi(a)(t) = r(t) \in \mathcal R(a).
+$$
+Again since $\mathcal R(a_n) \to \mathcal R(a)$ in the Hausdorff metric, 
+it follows that $\Phi(a_n)(t_n) \to \{l(t), r(t)\}$, showing the first 
+statement. 
+For the second statement, if $s_n \ge t_n$, and 
+$\Phi(a_n)(t_n) \to \Phi(a)(t)$, by $a_n$ being non-decreasing it cannot 
+be that $\Phi(a_n)(s_n) \to \Phi(a)(t-)$. 
+The third statement can be shown with a similar contradiction. 
+
+2.\&3. If we show that 
   \begin{align}
   T&=\{D \circ A^{-1}(u)\}_{u \in \mathbf U}=\{V^{-1}(u)\}_{u \in \mathbf U} \label{invCTRM}\\
   T'&= \{(D_- \circ A^{-1}_-)_+(u)\}_{u \in \mathbf U}=\{\tilde V^{-1}(u)\}_{u \in \mathbf U} \label{invOCTRM}
   \end{align}  
-the convergence 2. and 3. in the $M_1$-topology follows with Theorem 13.6.3 in Whitt. We therefore first show \eqref{invCTRM}. 
+the convergence 2. and 3. in the $M_1$-topology follows with Theorem 13.6.3 in 
+\cite{Whitt2010}. We therefore first show \eqref{invCTRM}. 
 Due to readability we define $\beta:=\left\{A(t)\right\}_{t>0}$ and $\sigma:=\left\{D(t)\right\}_{t>0}$, and so $\sigma^{-1}(t)=\left\{E(t)\right\}_{t>0}$. It is $\beta \in D_{\uparrow,u}$ and $\sigma \in D_{\uparrow \uparrow,u}$. Furthermore $\sigma^{-1}=\sigma^{\leftarrow}$, since $\sigma^{-1}$ is continuous (see Lemma 13.6.5 in \cite{Whitt2010}). Equation\eqref{invCTRM} is fulfilled, if we show that for all $x_0<a<x_F$
 \begin{align}
 ((\beta^{-} \circ \sigma^{\leftarrow})^{+})^{-1}(a)=\sigma(\beta^{-1}(a)).\label{ErsteintrittGl1}
