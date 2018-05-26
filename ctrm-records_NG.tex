@@ -1,0 +1,635 @@
+\documentclass[12pt, a4paper]{article}
+\fontfamily{times}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+
+\geometry{verbose,tmargin=30mm,bmargin=25mm,lmargin=25mm,rmargin=25mm}
+\pagestyle{empty}
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{question}[equation]{Question}
+\newtheorem{notation}[equation]{Notation}
+%\numberwithin{equation}{section}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\Y}{\mathfrak{Y}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\ZZ}{\mathcal{Z}}
+
+%Peter's commands
+\newcommand{\ex}{\mathbb {E}}
+\newcommand{\pr}{\mathbb {P}}
+\newcommand{\Rd}{\mathbb R^d}
+\newcommand{\Rp}{\mathbb R^+}
+\newcommand{\spctim}{\mathbb R^{d+1}}
+\newcommand{\del}{\partial }
+\newcommand{\1}{\mathbf 1}
+\newcommand{\eps}{\varepsilon}
+
+%Other commands
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\Law}{\mathop{\rm Law}}
+\newcommand{\Cov}{\mathop{\rm Cov}}
+\newcommand{\Var}{\mathop{\rm Var}}
+\newcommand{\sign}{\mathop{\rm sign}}
+\newcommand{\Floor}[1]{{\lfloor {#1} \rfloor}}
+\newcommand{\cd}{\overset{d}{\longrightarrow}}
+\newcommand{\cJ}{\overset{J_1}{\longrightarrow}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\ppartial}[2]{\dfrac{\partial {#1}}{\partial {#2} }}
+\newcommand{\cdj}{\overset{d}{\underset{J_1}{\longrightarrow}}}
+
+\title{Threshold Exceedances and Records of Continuous Time Random Maxima}
+\author{Nathan Giang \and Katharina Hees \and Peter Straka}
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations. This theory provides a model for bursty events, where the waiting times between the observations are heavy tailed.
+
+% This is where the abstract is placed. It should include a statement about the problem being addressed in the presentation (and paper, if submitted). Continue with a discussion of why it is important to address this problem. This may be followed by some summary information about the models and methods developed and/or used to address the problem. Conclude with a description of the key results and contributions that will be covered in the presentation (and paper).
+\end{abstract}
+
+{\bf Keywords}: CTRM; exceedances; extreme value statistics; bursts.
+
+
+\setlength{\parindent}{0pt}
+
+\section{Introduction}
+Extreme Value theory deals with the observation of extreme events which are the maxima of a sequence of observations and admits that these events occur at regular intervals in time. Recently a new theory called Continuous Time Random Maxima gets much regard, which can be thought of as a generalized extreme value theory. Instead of looking at events at fixed, regular time-points, this theory assumes random waiting times between the observations.
+
+
+\section{CTRMs and their scaling limits}
+
+\subsection{CTRMs}
+
+Let $(J,W),(J_1,W_1),(J_2,W_2), \ldots$ 
+be i.i.d.\ bivariate random vectors on $\mathbb R \times (0, \infty)$. 
+The components $J$ and $W$ represent an event magnitude and 
+a waiting time, respectively. 
+We first set up some notation: 
+
+
+\begin{definition}
+We write $S(n)$ and $M(n)$ for the \textbf{cumulative sum of the waiting times} $(W_i)_{i \in \N}$ and the \textbf{cumulative maximum of the magnitudes} $(J_i)_{i \in \N}$, more precisely 
+\begin{align}
+S(t) &= \sum_{i=1}^{\lfloor t \rfloor} W_i, 
+&
+M(t) &= \bigvee_{i=1}^{\lfloor t \rfloor} J_i
+\end{align} 
+for the cumulative sum of the waiting times and the cumulative maximum of the 
+magnitudes. 
+The renewal process associated with $S$ is 
+\begin{align} \label{eq:renewal-process}
+N(t) = \max\{n \in \mathbb N: S(n) \le t\}.
+\end{align}
+Finally the process
+\begin{align}
+V(t) 
+= M\left( N(t) \right) 
+= \bigvee_{k=1}^{N(t)} J_k, \quad t \ge 0.
+\end{align}
+is called a \textbf{CTRM process (Continuous Time Random Maxima)} and moreover the process
+\begin{align}
+\tilde V(t) 
+= M\left( N(t) + 1 \right) 
+= \bigvee_{k=1}^{N(t) + 1} J_k, \quad t \ge 0.
+\end{align}
+an \textbf{OCTRM (Oracle Continuous Time Random Maxima)}
+.
+\end{definition}
+
+The conceptual difference between the CTRM and the OCTRM is that for the CTRM, 
+the waiting time $W_k$ precedes the magnitude $J_k$, whereas for 
+the OCTRM it succeeds it. In other words, for the CTRM we have 
+$W_1, J_1, W_2, J_2, W_3, \ldots$ whereas for the
+OCTRM, we have $J_1, W_1, J_2, W_2, J_3, \ldots$. 
+
+
+\subsection{Rescaling}
+
+\paragraph{}
+Let $c > 0$ be a scaling parameter, and let 
+$a(c), b(c)$ and $d(c)$ be deterministic scaling functions,
+defining rescaled waiting times and magnitudes as follows: 
+\begin{align}
+J^{(c)} &\stackrel{d}{=} \frac{J - d(c)}{a(c)}, 
+& 
+W^{(c)} &\stackrel{d}{=} \frac{W}{b(c)}
+\end{align}
+where $\stackrel{d}{=}$ denotes equality in distribution. 
+Starting from $W^{(c)}$ and $J^{(c)}$ rather than $W$ and $J$, we thus define rescaled 
+versions $S^{(c)}, M^{(c)}, N^{(c)}, V^{(c)}$ and $\tilde V^{(c)}$ of the 
+stochastic processes introduced above. 
+
+\paragraph{}
+Throughout, we assume that the distribution of $J$ is continuous. 
+It is then well-known in extreme value theory that there exist $a(c)$ and $d(c)$
+such that as $c \to \infty$,
+$M^{(c)}(c)$ converges weakly to a random variable $A$ with a
+Generalized Extreme Value (GEV) distribution: 
+\begin{align}
+M^{(c)}(c) \stackrel{d}{\to} A,
+\quad \PP(A \le z) = G(z) = \exp\left(-[1+\xi z]^{-1/\xi}\right), 
+\quad 1 + \xi z > 0. \label{Mises}
+\end{align}
+Equation \eqref{Mises} is the so-called van-Mises representation for 
+Extreme Value distributions. 
+It comprises the Fr\'echet ($\xi>0$), Weibull ($\xi<0$),
+and Gumbel ($\xi = 0$) distributional families. 
+We write ${\rm GEV}(\xi, \mu, \sigma)$ for the probability 
+distribution of the random variable $\sigma A + \mu$. 
+
+\paragraph{}
+The extremal limit theorem allows for an extension to a functional
+limit: 
+\begin{align} \label{eq:extremal-limit}
+M^{(c)}(ct)
+\stackrel{d}{\to} A(t),
+\quad c \to \infty.
+\end{align}
+The convergence is in $J_1$-topology, the strongest of the topologies defined by Skorokhod in XX and which is sometimes also called Skorokhod topology. The limit process $A(t)$ is an F-extremal process, with finite-dimensional distributions given by
+\begin{align*}
+\PP(A(t_i)\leq x_i,1\leq i \leq d) = G(\wedge_{i=1}^d x_i)^{t_1}  G(\wedge_{i=2}^d x_i)^{t_2-t_1} \cdot \ldots \cdot G(x_d)^{t_d-t_{d-1}}.
+\end{align*}
+
+\paragraph{}
+We study the case where the waiting times $W$ have a heavy tail with
+parameter $\beta \in (0,1)$, i.e.\ 
+$$
+\PP(W > t) \sim L(t) t^{-\beta}, \quad t \uparrow \infty
+$$ 
+for some slowly varying function $L(t)$.\footnote{
+We write $f(t) \sim g(t)$ if their quotient converges to $1$.
+}
+The $W_k$ are then said to lie in the 
+domain of attraction of a stable law, meaning that 
+\begin{align}\label{eq:sclt}
+S^{(c)}(c) \overset{d}{\longrightarrow} D, 
+\quad c \to \infty
+\end{align}
+exists, for some $b(c)$ which varies regularly at $\infty$ with exponent 
+$1/\beta$. 
+The limit $D$ is then a positively skewed stable random variable, defined via
+its Laplace transform $\E[\exp(-sD)] = \exp(-s^\beta)$.
+As for the maximum, the following functional limit theorem holds for the sum:
+\begin{align}
+S^{(c)}(ct) \overset{d}{\longrightarrow} D(t), 
+\quad c \to \infty
+\end{align}
+with convergence in the Skorokhod $J_1$ topology.
+The limit $D(t)$ is a stable subordinator, i.e.\ an increasing
+L\'evy process with Laplace transform $\exp(-t s^\beta)$. In the following we will exclude the case that $D(t)$ is not strictly increasing, in equality the case, that $D(t)$ is compound Poisson. 
+
+\paragraph{}
+It is well known (see e.g.\ \cite{limitCTRW}) that the renewal
+process then satisfies the functional limit
+\begin{align}
+N^{(c)}(t)/\tilde b(c) \cd E(t) = \inf\{r: D(r) > t\}, 
+\quad c \to \infty
+\end{align}
+for a scaling function $\tilde b(c)$ which is asymptotically inverse to $b(c)$, in the sense of \cite[p.20]{seneta}: 
+\begin{align}\label{eq:tildeb}
+b(\tilde b(c)) \sim c \sim \tilde b(b(c)).
+\end{align}
+Note that $\tilde b \in {\rm RV}_\infty(\beta)$ 
+\cite{limitCTRW}.
+The limit process $E(t)$ is called the \emph{inverse} stable
+subordinator \cite{invSubord}.
+
+\paragraph{}
+Finally, we can give the functional limit of the CTRM and OCTRM processes. 
+For the OCTRM, we have 
+\begin{align}
+  \lim \limits_{c \to \infty} \tilde V^{(c)}(t) = \tilde V(t) 
+  := A \circ E(t),
+\end{align}
+where $\circ$ denotes stochastic process composition. For the CTRM, we have 
+\begin{align}
+\lim \limits_{c \to \infty} V^{(c)}(t) = V(t) 
+:= (A_- \circ E)_+(t),
+\end{align}
+where $A_-$ denotes the version of $A$ with left-continuous sample paths, and 
+where the composition is re-cast to be right-continuous; see \cite{Hees17}. 
+
+
+\section{Threshold events: time and magnitude}
+
+\begin{definition}
+Write $\mathbf U$ for the interior of the support of the GEV distribution from 
+\eqref{Mises}. 
+Let $u \in \mathbf U$ be a threshold, and write 
+$
+\tau^{(c)}(u) := \min\{n: J^{(c)}_n > u\}
+$
+for the index of the first threshold exceedance. 
+Then
+\begin{align*}
+  Y^{(c)}(u) := J^{(c)}_{\tau^{(c)}(u)}
+\end{align*}
+is called the \textbf{threshold event magnitude}. The random variables 
+\begin{align}
+  T^{(c)}(u) = \sum_{n=1}^{\tau^{(c)}(u)} W^{(c)}_n \quad \text{resp.} \quad 
+  T'^{(c)}(u) = \sum_{n=1}^{\tau^{(c)}(u)-1} W^{(c)}_n
+\end{align}
+are then called the \textbf{threshold event time} for the CTRM resp.\ the 
+OCTRM. 
+\end{definition}
+
+(Note that $J^{(c)} \le u$ iff $J \le a(c) u + d(c)$, and that 
+$a(c) u + d(c) \uparrow x_R$ as $c \to \infty$.) \\
+\ \\
+In the following we define with $\mathbb{D}_{u}(E)$ the subset of all functions $\alpha\in \mathbb{D}(E)$  which are unbounded from above. Furthermore $\mathbb{D}_{\uparrow}(E)$ resp. $\mathbb{D}_{\uparrow\uparrow}(E)$ is the subset of all functions $\alpha\in \mathbb{D}(E)$ with $\alpha$ monotone increasing resp. strictly increasing. Additionally we define $\mathbb{D}_{u,\uparrow}(E):=\mathbb{D}_{u}(E) \cap \mathbb{D}_{\uparrow}(E)$ and $\mathbb{D}_{u,\uparrow\uparrow}(E):=\mathbb{D}_{u}(E)\cap \mathbb{D}_{\uparrow\uparrow}(E)$.
+The right and left continuous inverse of a cadlag process  $\alpha \in D_{u}$ are defined by
+\begin{align*}
+\alpha^{-1}(t):=\inf\left\{s:\alpha(s) > t\right\} \hspace{1cm} \text{ und } \hspace{1cm} \alpha^{\leftarrow}(t):=\inf\left\{s:\alpha(s) \geq t\right\}.
+\end{align*}
+  respectively. Notice that   
+\begin{align*}
+\tau^{(c)}(u) = \inf \left\{t: M^{(c)}(t) >u \right\}
+\end{align*}
+is the right continuous inverse of the partial maxima process, also called the first hitting time of the partial maxima process. The processes $T^{(c)}$ and $T^{'(c)}$ are the right continuous inverses of the CTRM rsp. the OCTRM. 
+
+\begin{theorem}
+  At scale $c$, define the stochastic processes 
+  \begin{align*}
+    Y^{(c)} &:= \{Y^{(c)}(u)\}_{u \in \mathbf U}, 
+    & T^{(c)} &:= \{T^{(c)}(u)\}_{u \in \mathbf U}, 
+    & T'^{(c)} &:= \{T'^{(c)}(u)\}_{u \in \mathbf U}.
+  \end{align*}
+These processes have the following limits: 
+  \begin{enumerate}
+    \item 
+    $\lim \limits_{c \to \infty} Y^{(c)} = Y := \{A \circ A^{-1}(u)\}_{u \in \mathbf U}$
+    \item
+    $\lim \limits_{c \to \infty} T^{(c)} = T := \{D \circ A^{-1}(u)\}_{u \in \mathbf U}$
+    \item
+    $\lim \limits_{c \to \infty} T'^{(c)} = T' 
+    := \{(D_- \circ A^{-1}_-)_+(u)\}_{u \in \mathbf U}$
+  \end{enumerate}
+where 1. holds with respect to the $J_1$ topology and 2.\&3. hold with 
+respect to the $M_1$ topology. 
+\end{theorem}
+
+\begin{proof}
+1. We view $(A^{(c)}, D^{(c)})$ and $(A, D)$ as random elements on 
+the Skorokhod space $\Omega$ of all right-continuous sample paths with 
+left-hand limits 
+in $\mathbb R \times \mathbb R$, defined on the open interval $(0,\infty)$. 
+Write $\PP^{(c)}$ and $\PP$ for their probability distributions on $\Omega$, 
+respectively.
+Let $S \subset \Omega$ be the subset of sample paths $(a,d)$ whose first 
+component $a$ is non-decreasing and has a discrete range 
+$\mathcal R(a) := \{a(t): t > 0\}$. 
+By discrete we mean that for each $r \in \mathcal R(a)$ there exists 
+$\varepsilon > 0$ such that 
+$(r-\varepsilon, r+\varepsilon) \cap \mathcal R(a) = \emptyset$.
+Since $A^{(c)}$ and $A$ are maximal resp. extremal processes, we have 
+$\PP^{(c)}(S) = \PP(S) = 1$ (see e.g. \cite[Prop 4.1 \& Prop 4.8]{resnick2013extreme}).
+Moreover, by \cite[Prop 4.20]{resnick2013extreme} we have that 
+$\PP^{(c)} \to \PP$, weakly with respect to the Skorokhod $J_1$ topology. 
+By the continuous mapping theorem, it then suffices to show that the mapping 
+$$
+\Phi: S \ni a \mapsto a \circ a^{-1} \in S
+$$
+is $J_1$-continuous. 
+Let $a_n$ be a sequence in $S$ such that $a_n \to a \in S$
+with respect to $J_1$. 
+Let $t > 0$, and let $t_n$ be any sequence such 
+that $t_n \to t$. By \cite[Th 3.6.5]{EthierKurtz}, it suffices to show 
+the following three statements: 
+\begin{enumerate}
+  \item 
+  $\Phi(a_n)(t_n) \to \{\Phi(a)(t), \Phi(a)(t-)\}$
+  \footnote{This means that $\Phi(a_n)(t_n)$ has at most two possible limit points, $\Phi(a)(t)$ or $\Phi(a)(t-)$.} 
+  \item
+  If $\Phi(a_n)(t_n) \to \Phi(a)(t)$ and $s_n \ge t$ and $s_n \to t$, then 
+  $\Phi(a_n)(s_n) \to \Phi(a)(t)$.
+  \item 
+  If $\Phi(a_n)(t_n) \to \Phi(a)(t-)$ and $s_n \le t$ and $s_n \to t$, then 
+  $\Phi(a_n)(s_n) \to \Phi(a)(t-)$.
+\end{enumerate}
+Now write $r(t) = \inf\{\mathcal R(a) \cap (t, \infty)\}$ and 
+$l(t) = \sup\{\mathcal R(a) \cap (0, t]\}$, 
+and define $r_n(t_n)$ and $l_n(t_n)$ similarly using $a_n$ and $t_n$. 
+Note that $\Phi(a)(t) = r(t)$ and $\Phi(a_n)(t_n) = r_n(t_n)$.
+If $t \notin \mathcal R(a)$, then 
+$$
+\mathcal R(a) \ni l(t) < t < r(t) \in \mathcal R(a).
+$$
+Since $a_n \to a$ in $J_1$, it follows that 
+$\mathcal R(a_n) \to \mathcal R(a)$ in the Hausdorff metric. 
+But then $\Phi(a_n)(t_n) \to r(t) = \Phi(a)(t)$, 
+and all three assertions follow, as $t_n \to t$ was chosen arbitrarily. 
+If on the other hand $t \in \mathcal R(a)$, then 
+$$
+\mathcal R(a) \ni l(t) = t = \Phi(a)(t-) < \Phi(a)(t) = r(t) \in \mathcal R(a).
+$$
+Again since $\mathcal R(a_n) \to \mathcal R(a)$ in the Hausdorff metric, 
+it follows that $\Phi(a_n)(t_n) \to \{l(t), r(t)\}$, showing the first 
+statement. 
+For the second statement, if $s_n \ge t_n$, and 
+$\Phi(a_n)(t_n) \to \Phi(a)(t)$, by $a_n$ being non-decreasing it cannot 
+be that $\Phi(a_n)(s_n) \to \Phi(a)(t-)$. 
+The third statement can be shown with a similar contradiction. 
+
+2.\&3. If we show that 
+  \begin{align}
+  T&=\{D \circ A^{-1}(u)\}_{u \in \mathbf U}=\{V^{-1}(u)\}_{u \in \mathbf U} \label{invCTRM}\\
+  T'&= \{(D_- \circ A^{-1}_-)_+(u)\}_{u \in \mathbf U}=\{\tilde V^{-1}(u)\}_{u \in \mathbf U} \label{invOCTRM}
+  \end{align}  
+the convergence 2. and 3. in the $M_1$-topology follows with Theorem 13.6.3 in 
+\cite{Whitt2010}. We therefore first show \eqref{invCTRM}. 
+Due to readability we define $\beta:=\left\{A(t)\right\}_{t>0}$ and $\sigma:=\left\{D(t)\right\}_{t>0}$, and so $\sigma^{-1}(t)=\left\{E(t)\right\}_{t>0}$. It is $\beta \in D_{\uparrow,u}$ and $\sigma \in D_{\uparrow \uparrow,u}$. Furthermore $\sigma^{-1}=\sigma^{\leftarrow}$, since $\sigma^{-1}$ is continuous (see Lemma 13.6.5 in \cite{Whitt2010}). Equation\eqref{invCTRM} is fulfilled, if we show that for all $x_0<a<x_F$
+\begin{align}
+((\beta^{-} \circ \sigma^{\leftarrow})^{+})^{-1}(a)=\sigma(\beta^{-1}(a)).\label{ErsteintrittGl1}
+\end{align}
+Since $(\beta^{-} \circ \sigma^{\leftarrow})^{+} \in D_{\uparrow,u}$ und $(x^{-1})^{-1}=x$ for $x \in D_{\uparrow,u}$ (see Corollary 13.6.1 in \cite{Whitt2010}) is \eqref{ErsteintrittGl1} equivalent to
+\begin{align*}
+(\beta^{-} \circ \sigma^{\leftarrow})^{+}(a)=(\sigma \circ \beta^{-1})^{-1}(a).
+\end{align*}
+This is again $x^{\leftarrow}(t)=x^{-1}(t-)$ equivalent to
+\begin{align*}
+(\beta^{-} \circ \sigma^{\leftarrow})(a)=(\sigma \circ \beta^{-1})^{\leftarrow}(a).
+\end{align*}
+The last equality is true since due to $x^{\leftarrow}(t) \leq s \Leftrightarrow x(s) \geq t$ for $x \in D_{\uparrow,u}$  (see Lemma 13.6.3. in \cite{Whitt2010}) and $(x^{-1})^{\leftarrow}=x^{-}$ for $x \in \mathbb{D}_{\uparrow,u}$, it follows that
+\begin{align*}
+(\sigma \circ \beta^{-1})^{\leftarrow}(a)&=\inf \left\{s \in \mathbf U: \sigma(\beta^{-1}(s)) \geq a \right\}\\
+&=\inf \left\{s \in \mathbf U: \sigma^{\leftarrow}(a) \leq \beta^{-1}(s)\right\}\\
+&=\beta^{-}(\sigma^{\leftarrow}(a)).
+\end{align*}
+Equation \eqref{invOCTRM} is fulfilled if we show that for all $x_0<a<x_F$ and $s\geq  0$
+\begin{align*}
+(\beta \circ \sigma^{-1})^{-1}=(\sigma_{-} \circ \beta^{\leftarrow})^{+}.
+\end{align*}
+However, this is equivalent to
+\begin{align*}
+(\beta \circ \sigma^{-1})^{\leftarrow} = \sigma_{-} \circ \beta^{\leftarrow},
+\end{align*}
+which is true because 
+\begin{align*}
+(\beta \circ \sigma^{-1})^{\leftarrow}(a)&=\inf \left\{s \geq 0: (\beta \circ \sigma^{-1})(s) \geq a\right\}\\
+&=\inf \left\{ s \geq 0: \beta^{\leftarrow}(a) \leq \sigma^{-1}(s) \right\}\\
+&=(\sigma^{-1})^{\leftarrow}(\beta^{\leftarrow}(a))
+\end{align*}
+and the fact that $(\sigma^{-1})^{\leftarrow}=\sigma_{-}$. Hence the assertion 3. follows.
+
+\end{proof}
+
+
+
+
+
+\section{Joint distribution of threshold event and threshold crossing time}
+
+Define the potential measure, or expected occupation time, of the bivariate 
+Markov process $(A(u),D(u))$:
+
+\begin{align*}
+U(B) = \ex \left[ \int_0^\infty \mathbf 1\{ (A_u, D_u) \in B\}\,du \right]
+\end{align*}
+
+Define the bivariate tail function $\overline \nu(x,t)$ via 
+
+\begin{align}\label{eq:Tail_Function}
+\overline \nu(x,t) = \lim_{c \to \infty} c \pr [J^{(c)} > x, W^{(c)} > t]
+\end{align}
+
+
+\begin{theorem}
+\begin{align}
+\pr [T(u) > t, Y(u) > y]
+= \iint\limits_{x \le u, t' \in [0,t)} \overline \nu(y, t - t') U(dx, dt')
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Let $A^{-1}(u)=z$ and $y \geq u$.  We first note the following equivalences:
+\begin{align*}
+Y(u) > y \iff A(z) > y \\
+T(u) > t \iff D(z) > t
+\end{align*}
+By definition of the exceedance level $u$, we have that $A(z)_{-} \leq u$.
+\\
+
+Since $D$ is a subordinator, the process of jumps $\eta(z):=D(z)-D(z)_{-}$ is a Poisson Point Process. Furthermore, even though $A$ is not a L\'evy process, since it is an F-extremal process, the process of maxima $\zeta(z):=A(z) \vee A(z)_{-}$ is a Poisson Point Process. Let $\nu$ be the L\'evy measure describing the Poisson Point Process from which the bivariate Markov process $(A(z),D(z))$ is constructed. We can then write,
+\begin{align}\label{eq:Compensation_Formula}
+\pr [T(u) > t, Y(u) > y] = \ex \left[\sum_{z>0} \mathbf 1_{\{A(z)_{-} \leq u, D(z)_{-} < t\}} \mathbf 1_{\{\zeta(z) \geq y , \eta(z) \geq t - D(z)_{-}\}} \right]
+\end{align}
+Note that the sum in the expectation above is taken over all instances where the bivariate Point Poisson Process $(\zeta, \eta)$ jumps. It is well defined because there are only countably many instances where the indicator is non-zero. We must also have that $t-D(z)_{-}>0$ since we are taking summation only when the process jumps. Since the processes $A(z)_{-}$ and $D(z)_{-}$ are predictable (both are left-continuous), we can apply the Compensation Formula for Poisson Point Processes so that \eqref{eq:Compensation_Formula} can be written as
+\begin{align*}
+\ex \left[\int_{0}^{\infty} \mathbf 1_{\{A(z) \leq u\}} \nu((y,\infty)\times (t-D(z),\infty) dz \right] &= \ex \left[\int_{0}^{\infty} \mathbf 1_{\{A(z) \leq u\}} \overline{\nu}(y,t-D(z)) dz \right] \\
+&= \iint\limits_{x \le u, t' \in [0,t)} \overline \nu(y, t - t') U(dx, dt')
+\end{align*}
+Here, we have defined $\overline{\nu}$ to be the tail of the L\'evy measure $\nu$. If, for $i=1,2,3,...$, the joint random variable $(W,J)$ of the sum $W_i^{(c)}$ and the maximum of $J_i^{(c)}$ converge in distribution to $(A,D)$, then the expression in \eqref{eq:Tail_Function} follows directly from \cite[Theorem 3.5]{Hees16} since $\overline{\nu}$ is a L\'evy measure.
+
+\end{proof}
+\section{Semi-Markov property of CTRMs}
+\label{sec:records}
+
+\paragraph{}
+The maximal process $M = \{M(n)\}_{n\in \mathbb N}$ 
+and the extremal process $A = \{A(t)\}_{t > 0}$
+are well understood, see e.g. \cite[Chapter 4]{resnick2013extreme}. 
+Both are Markov processes with piecewise constant non-decreasing sample paths, 
+in discrete time ($M$) resp. continuous time ($A$). 
+The sample paths of $A$ are right-continuous. 
+The jump times (i.e. points of increase) $\tau_n$ are called \emph{record times}, 
+and their values at the record times are called \emph{records}. 
+At a record $x$, the holding time for $M$ follows a ${\rm Geo}(1-F(x))$ distribution, 
+where $F(x)$ is the cumulative distribution of magnitudes. 
+For $A$, the holding time is ${\rm Exp}(-\log G(x))$ distributed, where $G(x)$
+is the underlying GEV distribution.\footnote{In general, extremal processes can 
+be defined using any continuous distribution $F$, but the limit 
+\eqref{eq:extremal-limit} results in the GEV distribution $G$.}
+The probability distribution of the next record $y$ is simply given by 
+\begin{align} \label{eq:record-chain-1}
+  \PP[M(\tau_{n+1}) > y | M(\tau_n) = x] &= 1 \wedge \frac{1-F(y)}{1-F(x)}, 
+  \\
+  \label{eq:record-chain-2}
+  \PP[A(\tau_{n+1}) > y | A(\tau_n) = x] &= 1 \wedge \frac{-\log G(y)}{-\log G(x)}.
+\end{align}
+Finally, even more can be said about the structure of records: 
+the set of all records is a Poisson Point process (PPP) with
+mean measure $R(dx) = d(-\log (1-F(x)))$ for $M$ and 
+$d(-\log (-\log G(x)))$ for $A$.
+In the special case $F(x) = 1-e^{-x}$ resp. where $G(x)$ is the Gumbel distribution 
+($\xi = 0$), the mean measure is Lebesgue measure (on $(0, \infty)$ resp. $\mathbb R$).
+
+
+\paragraph{}
+Paths of the CTRM process $V^{(c)}$ and the CTRM limit process $V$
+result from time changes of $M^{(c)}$ and $A$. 
+Hence the set of points traversed by them, i.e. the set of records, 
+follows the same probability law, and the only difference lies in the 
+distribution of the holding times. 
+
+\begin{proposition} \label{prop:semi-markov}
+  The CTRM process $V^{(c)}$, the OCTRM process $\tilde V^{(c)}$ and their 
+  scaling limits $V$ resp. $\tilde V$, are all Semi-Markov processes. 
+  Their holding times at a record $x$ are, respectively, 
+  \begin{align}
+    T^{(c)}(x), \quad W^{(c)}(x) + T'^{(c)}(x), \quad T(x), \quad W(x) + T'(x),
+  \end{align}
+  where $W^{(c)}(x)$ resp. $W(x)$ is an independent random variable with density 
+  \begin{align} \label{eq:conditional-W}
+    t \mapsto \frac{\nu^{(c)}(x,t)}{\int \limits_{[0,\infty)} \nu^{(c)}(x,t')\,dt'}
+    \quad \text{ resp. } \quad 
+    t \mapsto \frac{\nu(x,t)}{\int \limits_{[0,\infty)} \nu(x,t')\,dt'}
+  \end{align}
+\end{proposition}
+
+\begin{proof}
+  As mentioned above, the sequence of records is a Markov chain, and it only 
+remains to show that the holding time $\tau_{n+1} - \tau_n$ only depends on 
+the current record $V(\tau_n)$, that is, 
+\begin{align}
+  \PP[\tau_{n+1} - \tau_n | \tau_1, \ldots, \tau_n, V(\tau_1), \ldots V(\tau_n)]
+  = \PP[\tau_{n+1} - \tau_n | V(\tau_n)].
+\end{align}
+
+For the CTRM, if $x = V^{(c)}(\tau_n) = J^{(c)}_k$ is a record, then the record time 
+is $\tau_n = W^{(c)}_1 + \ldots + W^{(c)}_k$.
+It marks the beginning of the waiting time $W^{(c)}_{k + 1}$, a magnitude
+$J^{(c)}_{k+1}$, and so on.
+Hence the CTRM is renewed at $\tau_n$, and the time until 
+the next record $y = V^{(c)}(\tau_{n+1})$, i.e. the holding time at $x$, is
+equal in distribution to $T^{(c)}(x)$.
+
+For the OCTRM, and a record as above, 
+the record time is $\tau_n = W^{(c)}_1 + \ldots + W^{(c)}_{k-1}$.
+This shows that the OCTRM is renewed only after the following waiting time $W^{(c)}_k$. 
+The holding time is hence equal in distribution to 
+$W(x) + T'^{(c)}(x)$, 
+where $W(x)$ has the density \eqref{eq:conditional-W}
+
+For the CTRM limit, let $\tau$ be a record time, i.e. $V(\tau) = x$ and  
+$V(t) < x$ if $t < \tau$. 
+Then for any $\eps > 0$, 
+$\tau = \inf\{t: V(t) > x-\eps\} = \inf\{t: (A_- \circ E)_+(t) > x-\eps\}
+= \inf\{t: A_- \circ E(t) > x-\eps\}$.
+By construction, $E$ must be right-increasing at $\tau$, 
+i.e. $E(t) > E(\tau)$ if $t > \tau$. If it wasn't, we would have
+$V(\tau) = A_- \circ E(\tau)$, which is the value of $A$ just before it reaches 
+$x$, in cotradition to $V(\tau) = x$.
+Thus $\tau = D(u)$ for some $u \ge 0$, which means that $\tau$ is a renewal point
+(compare \cite{Bertoin04}). 
+The time until an exceedance of $x$ is hence just $T(x)$. 
+
+For the OCTRM limit, let $x$ be a record and $\tau$ a record time, i.e. 
+$\tilde V(\tau) = A \circ E(t) = x$ and $\tilde V(\tau - \eps) < x$. 
+Then $E(\tau)$ is a jump time of $A$, i.e. $u = E(\tau)$ marks the first occurrence 
+of an event $J_u \ge x$. 
+Since we do not assume the uncoupled
+case, $D$ may also have a jump $W_u > 0$ at $u$. 
+This means that $E$ is constant on the interval $[\tau, \tau + W_u]$, 
+and the next renewal time after $\tau$ is $\tau + W_u$.
+Given the event $J_u = x$, the distribution of $W_u | J_u = x$ 
+has the density \eqref{eq:conditional-W}.
+Then the time until the next record $y$, i.e. the holding time at $x$, is 
+equal in distribution to $W(x) + T'(x)$. 
+\end{proof}
+
+
+\begin{theorem}
+Suppose $F_J$ is continuous, and let 
+\begin{align}
+  R(dx) = d(-\log(1-F(x))), \quad S(dx) = d(-\log(-\log G(x))).
+\end{align} 
+Then 
+\begin{enumerate}
+  \item 
+  $\{(V^{(c)}(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $(x_l, x_0) \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = R(dx) \PP(T^{(c)}(x) \in dy),
+  \end{align}
+  \item
+  $\{(\tilde V^{(c)}(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $(x_l, x_0) \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = R(dx) \PP(W^{(c)}(x) + T^{(c)}(x) \in dy),
+  \end{align}
+  \item
+  $\{(V(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $\mathbf U \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = S(dx) \PP(T(x) \in dy),
+  \end{align}
+  \item
+  $\{(\tilde V(\tau_n), \tau_{n+1} - \tau_n), n \ge 1\}$ 
+  are the points of a bivariate Poisson random measure on
+  $\mathbf U \times (0,\infty)$ with mean measure
+  \begin{align}
+  \mu^*(dx, dy) = S(dx) \PP(W(x) + T'(x) \in dy).
+  \end{align}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By \cite[Prop 4.1(iii)]{resnick2013extreme} and the observation that 
+$V^{(c)}$ and $\tilde V^{(c)}$ are time changes of maximal processes, 
+The records $V^{(c)}(\tau_n)$ resp. $\tilde V^{(c)}(\tau_n)$ form 
+a PPP with mean measure $R(dx)$. 
+Similarly, by \cite[Prop 4.8(iii)]{resnick2013extreme}, the records 
+$V(\tau_n)$ and $\tilde V(\tau_n)$ form a PPP with mean measure $S(dx)$. 
+By Proposition \ref{prop:semi-markov}, the holding times $\tau_{n+1} - \tau_n$
+are conditionally independent given their record 
+$V^{(c)}(\tau_n), \tilde V^{(c)}(\tau_n)$, etc.
+Applying \cite[Prop 3.8]{resnick2013extreme} to the kernels 
+$K(x,dy) = \PP(T^{(c)}(x) \in dy)$, etc., marks each record with its corresponding 
+holding time, and proves the theorem. 
+\end{proof}
+
+
+
+
+\section{Governing Equations of CTRM limits}
+
+
+
+
+%\section{Conclusion}
+\section{Conclusion}
+
+
+{\bf Acknowledgements.} P. Straka was supported by the Australian Research Council’s Discovery Early Career Research Award DE160101147.
+
+
+\bibliographystyle{alpha}
+\bibliography{CTRMstats}
+
+
+
+\end{document}
