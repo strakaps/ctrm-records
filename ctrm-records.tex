@@ -19,7 +19,7 @@
 \newtheorem{question}[equation]{Question}
 \newtheorem{notation}[equation]{Notation}
 %\numberwithin{equation}{section}
- 
+
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
@@ -432,18 +432,21 @@ Define the bivariate tail function $\overline \nu(x,t)$ via
 \end{theorem}
 
 \begin{proof}
-Let $A^{-1}(u)=z$.  We first note the following equivalences:
+Let $A^{-1}(u)=z$ and $y \geq u$.  We first note the following equivalences:
 \begin{align*}
-Y(u) > y \iff A(z)_{-} \leq u \\
-T(u) > t \iff D(z)_{-} < t
+Y(u) > y \iff A(z) > y \\
+T(u) > t \iff D(z) > t
 \end{align*}
+By definition of the exceedance level $u$, we have that $A(z)_{-} \leq u$.
+\\
+
 Since $D$ is a subordinator, the process of jumps $\eta(z):=D(z)-D(z)_{-}$ is a Poisson Point Process. Furthermore, even though $A$ is not a L\'evy process, since it is an F-extremal process, the process of maxima $\zeta(z):=A(z) \vee A(z)_{-}$ is a Poisson Point Process. Let $\nu$ be the L\'evy measure describing the Poisson Point Process from which the bivariate Markov process $(A(z),D(z))$ is constructed. We can then write,
 \begin{align}\label{eq:Compensation_Formula}
-\pr [T(u) > t, Y(u) > y] = \ex \left[\sum_{z>0} \mathbf 1_{\{A(z)_{-} \leq u, D(z)_{-} < t\}} \mathbf 1_{\{\zeta(z) \geq y , \eta(z) \geq t - D(z)_{-}\}} \right]
+\pr [T(u) > t, Y(u) > y] = \ex \left[\sum_{z>0} \mathbf 1_{\{A(z)_{-} \leq u\}} \mathbf 1_{\{\zeta(z) > y , \eta(z) > t - D(z)_{-}\}} \right]
 \end{align}
-Note that the sum in the expectation above is taken over all instances where the bivariate Point Poisson Process $(\zeta, \eta)$ jumps. It is well defined because there are only countably many instances where the indicator is non-zero. Since the processes $A(z)_{-}$ and $D(z)_{-}$ are predictable (both are left-continuous), we can apply the Compensation Formula for Poisson Point Processes so that \eqref{eq:Compensation_Formula} can be written as
+Note that the sum in the expectation above is taken over all instances where the bivariate Point Poisson Process $(\zeta, \eta)$ jumps. It is well defined because there are only countably many instances where the indicator is non-zero. We must also have that $\eta(z)>0$ since we are taking summation only when the process jumps. Since the processes $A(z)_{-}$ and $D(z)_{-}$ are predictable (both are left-continuous), we can apply the Compensation Formula for Poisson Point Processes so that \eqref{eq:Compensation_Formula} can be written as
 \begin{align*}
-\ex \left[\int_{0}^{\infty} \mathbf 1_{\{A(z) \leq u, D(z) < t\}} \nu((y,\infty)\times (t-D(z),\infty) dz \right] &= \ex \left[\int_{0}^{\infty} \mathbf 1_{\{A(z) \leq u, D(z) < t\}} \overline{\nu}(y,t-D(z)) dz \right] \\
+\ex \left[\int_{0}^{\infty} \mathbf 1_{\{A(z) \leq u\}} \nu((y,\infty)\times (t-D(z),\infty) dz \right] &= \ex \left[\int_{0}^{\infty} \mathbf 1_{\{A(z) \leq u\}} \overline{\nu}(y,t-D(z)) dz \right] \\
 &= \iint\limits_{x \le u, t' \in [0,t)} \overline \nu(y, t - t') U(dx, dt')
 \end{align*}
 Here, we have defined $\overline{\nu}$ to be the tail of the L\'evy measure $\nu$. If, for $i=1,2,3,...$, the joint random variable $(W,J)$ of the sum $W_i^{(c)}$ and the maximum of $J_i^{(c)}$ converge in distribution to $(A,D)$, then the expression in \eqref{eq:Tail_Function} follows directly from \cite[Theorem 3.5]{Hees16} since $\overline{\nu}$ is a L\'evy measure.
